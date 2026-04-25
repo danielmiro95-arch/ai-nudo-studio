@@ -595,89 +595,387 @@
   <script src="js/script.js"></script>
   <script>
   // ═══════════════════════════════════════════════════════
-  //  LÓGICA DEL AGENTE DE MENTORÍA
+  //  NUDO — ASISTENTE EXPERTO EN DECORACIÓN
+  //  AI Nudo Studio · Base de conocimiento completa
   // ═══════════════════════════════════════════════════════
 
-  let conversationState = {
-    category: 'boda',
-    subcat: 'boda-civil',
-    style: null,
-    budget: null,
-    step: 'welcome'
+  let ctx = {
+    category: null, style: null, budget: null,
+    venue: null, guests: null, date: null, step: 0
   };
 
-  // ── Respuestas inteligentes del agente ──
-  const agentResponses = {
+  // ═══════════════════════════════════════════════════════
+  //  BASE DE CONOCIMIENTO EXPERTA — AI NUDO STUDIO
+  // ═══════════════════════════════════════════════════════
 
-    boda: {
-      intro: `¡Una boda! Me encanta. 💒<br><br>
-        En AI Nudo Studio especializamos cada boda desde una estética blanco y negro que convierte cualquier espacio en algo que parece sacado de una revista editorial.<br><br>
-        ¿Qué tipo de boda tienes en mente?`,
-      opts: ['Íntima y minimalista', 'Grande y romántica', 'Destino / al aire libre', 'Sin definir todavía']
+  const KB = {
+
+    // ── BODAS ────────────────────────────────────────────
+    boda_intro: {
+      html: `¡Una boda! Qué emocionante 💒<br><br>
+En AI Nudo Studio llevamos años decorando bodas con una filosofía clara: cada elemento tiene que tener un <strong>porqué visual</strong>. Flores con intención, espacios que respiran, detalles que sorprenden.<br><br>
+Para empezar a orientarte bien — ¿qué tipo de boda estáis pensando?`,
+      opts: ['Boda civil en finca o jardín', 'Boda religiosa en iglesia', 'Boda íntima (menos de 50 personas)', 'Boda en la playa o destino', 'Todavía no lo tenemos claro']
     },
 
-    'boda-civil': `Las bodas civiles son perfectas para trabajar con espacios neutros y arquitectura limpia. Podemos crear una decoración que haga hablar al espacio sin recargarlo — flores en blanco, estructuras minimalistas y una dirección de luz muy cuidada.<br><br>¿Ya tienes el espacio elegido?`,
-    'boda-religiosa': `Para bodas religiosas trabajamos mucho con arcos florales en blanco y verde, alfombras y pasillos que crean una entrada memorable. El contraste con el espacio de la iglesia da resultados muy impactantes.<br><br>¿La boda es en interior o exterior?`,
-    'boda-destino': `Las bodas destino son nuestras favoritas — la luz natural y el entorno hacen la mitad del trabajo. Nos centramos en detalles que viajan bien y se montan rápido sin perder calidad visual.<br><br>¿Tienes ya el destino en mente?`,
-    'boda-intima': `Las bodas íntimas permiten cuidar cada detalle al máximo. Con menos mesas, se puede invertir más en calidad de cada elemento — flores de temporada, vajilla seleccionada, luz de velas. El resultado es muy fotografiable.<br><br>¿Cuántos invitados aproximadamente?`,
-
-    evento: {
-      intro: `¡Perfecto para un evento! 🎉<br><br>
-        Trabajamos eventos de todo tipo con la misma filosofía: cada elemento debe tener un porqué visual. Nada sobra, nada falta.<br><br>
-        ¿Qué tipo de evento estás organizando?`,
-      opts: ['Cumpleaños / fiesta privada', 'Evento corporativo', 'Aniversario', 'Bautizo o comunión']
+    boda_civil: {
+      html: `Las bodas civiles en finca o jardín son uno de nuestros terrenos favoritos 🌿<br><br>
+Al no haber protocolo de iglesia, tenemos total libertad creativa. Podemos diseñar:<br>
+<strong>· El altar o arco</strong> — floral, con pampa, metálico, con telas vaporosas...<br>
+<strong>· El pasillo</strong> — alfombra + pétalos, macetitas a los lados, candelabros...<br>
+<strong>· Las mesas de invitados</strong> — centros florales, menú, tarjetones, número de mesa...<br>
+<strong>· La mesa de bienvenida</strong> — con seating plan y detalles de entrada<br><br>
+¿Ya tenéis el espacio elegido? Eso nos ayuda mucho a proponer el estilo.`,
+      opts: ['Sí, tenemos finca', 'Sí, es en jardín privado', 'Todavía buscando espacio', 'Cuéntame sobre estilos primero']
     },
 
-    cumpleanos: `Los cumpleaños privados son una oportunidad de crear algo muy personal y sorprendente. Podemos diseñar desde una mesa de dulces temática hasta una ambientación completa del espacio.<br><br>¿Cuántas personas vendrán aproximadamente?`,
-    corporativo: `Para eventos corporativos cuidamos mucho la coherencia de marca — que la decoración hable el mismo idioma visual que la empresa. Mesas limpias, señalética elegante, flores en blanco o con el color corporativo.<br><br>¿Tienes guía de marca o colores definidos?`,
-    aniversario: `Los aniversarios merecen algo especial. Podemos crear una experiencia íntima o una celebración más grande, siempre con una estética cuidada que haga el momento aún más memorable.<br><br>¿Es una sorpresa o lo planificáis juntos?`,
-    bautizo: `Bautizos y comuniones son celebraciones muy especiales. Trabajamos paletas en blanco, crema y dorado suave que funcionan muy bien en estos eventos.<br><br>¿Lo celebráis en casa o en un local?`,
-
-    regalo: {
-      intro: `¡Qué bonita iniciativa! 🎁<br><br>
-        Nuestros regalos combinan dirección visual y cariño en cada detalle. Desde ramos de flores hasta cajas personalizadas con productos seleccionados.<br><br>
-        ¿Para qué tipo de regalo buscas ideas?`,
-      opts: ['Ramo de flores', 'Caja regalo personalizada', 'Algo completamente diferente']
+    boda_religiosa: {
+      html: `Para bodas religiosas trabajamos mucho el <strong>antes y el después</strong> de la iglesia — la propia iglesia tiene ya su protagonismo arquitectónico.<br><br>
+Lo que más impacto tiene:<br>
+<strong>· Arco de entrada a la iglesia</strong> — floral o con telas, marca la llegada<br>
+<strong>· Decoración de bancos</strong> — ramitos colgantes, cintas, pequeños ramos<br>
+<strong>· Pasillo interior</strong> — pétalos o alfombra floral si el espacio lo permite<br>
+<strong>· Ramo de novia</strong> — siempre lo coordinamos con el resto de la decoración<br><br>
+Y luego en el banquete, donde ya tenemos total libertad. ¿Dónde será la celebración después?`,
+      opts: ['En finca o restaurante', 'En casa familiar', 'Aún no lo sabemos']
     },
 
-    'regalo-flores': `Los ramos de flores son uno de nuestros fuertes. Trabajamos con flores de temporada, siempre con una estética limpia — mucho blanco, verde oscuro y estructura que hace que el ramo parezca un objeto de diseño.<br><br>¿Tienes alguna flor favorita o nos das libertad creativa?`,
-    'regalo-caja': `Las cajas regalo son perfectas para momentos especiales. Diseñamos el contenido y la presentación como si fuera una caja de lujo: papel tissue, cinta de seda, tarjeta escrita a mano y productos seleccionados.<br><br>¿Para qué ocasión es?`,
-    'regalo-personal': `Me gusta la originalidad 👌 Cuéntame más — ¿para quién es el regalo y qué le gusta? Con esa información puedo ayudarte a crear algo completamente único.`,
-
-    styles: {
-      'Minimalista': `El estilo minimalista es nuestra esencia ◻<br><br>
-        Menos es más: pocas flores pero muy bien elegidas, espacios que respiran, mesas con espacio blanco. El resultado es elegante sin esfuerzo aparente.<br><br>
-        Para este estilo solemos recomendar: flores blancas de una sola variedad, ramas secas, velas y cristalería simple.`,
-      'Romántico': `El romanticismo bien ejecutado es precioso 🌸<br><br>
-        Trabajamos con flores en tonos crema, blanco roto y muy suavemente rosados. Siempre con estructura — nunca caótico. Cada detalle tiene su lugar.<br><br>
-        ¿Quieres que sea más jardín inglés o más provenzal?`,
-      'Editorial': `El estilo editorial es nuestro favorito ◼<br><br>
-        Blanco y negro puro, referencias de revista, composiciones geométricas. Funciona genial para bodas que quieren algo que nadie ha visto antes.<br><br>
-        Las fotos quedan increíbles con este estilo — el contraste hace todo el trabajo.`,
-      'Boho': `El boho natural bien hecho es muy hermoso 🌿<br><br>
-        Pampa, eucalipto, flores silvestres, materiales naturales. Siempre lo interpretamos con nuestra visión: nada recargado, todo con intención.<br><br>
-        ¿El evento es en interior o exterior? El exterior potencia mucho este estilo.`,
-      'Lujo clásico': `El lujo clásico requiere atención a cada detalle ✦<br><br>
-        Flores en blanco y verde oscuro, cristalería de alta gama, manteles de lino prensado, menaje de plata o dorado mate. El resultado tiene que verse "de revista" desde cualquier ángulo.<br><br>
-        ¿Tienes ya el espacio elegido? La arquitectura importa mucho en este estilo.`
+    boda_intima: {
+      html: `Las bodas íntimas son mis favoritas para trabajar 🤍<br><br>
+Con menos invitados (digamos menos de 50), se puede invertir <strong>mucho más en calidad por persona</strong>. El resultado es algo verdaderamente especial y muy fotografiable.<br><br>
+Para bodas íntimas recomendamos:<br>
+<strong>· Una mesa imperial</strong> en lugar de mesas redondas — más intimidad y más visual<br>
+<strong>· Centro floral corrido</strong> a lo largo de la mesa — flores + velas + verdes<br>
+<strong>· Detalles individuales</strong> para cada invitado — algo que se lleven a casa<br>
+<strong>· Iluminación cálida</strong> — la clave para la atmósfera de las fotos<br><br>
+¿Tenéis ya idea del estilo que queréis — más romántico, más minimalista, más boho?`,
+      opts: ['Romántico y con muchas flores', 'Minimalista y elegante', 'Boho natural', 'No tenemos claro el estilo']
     },
 
-    budgets: {
-      'hasta 500€': `Con un presupuesto de hasta 500€ podemos crear algo muy bonito enfocándonos en los elementos clave: flores de temporada, una pieza central protagonista y los detalles justos.<br><br>Te recomendaría centrarte en: un arreglo floral de impacto para la mesa principal + velas + papelería personalizada.`,
-      '500–1500€': `Con 500–1500€ se puede hacer una decoración completa y muy elegante. Podemos trabajar la ambientación de toda la sala manteniendo la coherencia visual en cada rincón.<br><br>Te propondría: arreglos florales completos + señalética + ambientación de entrada + mesa de dulces o bienvenida.`,
-      'más de 1500€': `Con más de 1500€ trabajamos sin restricciones creativas ✦<br><br>Podemos diseñar una experiencia completa: desde la bienvenida hasta la mesa de postres, con flores premium, atrezzo, iluminación y dirección de arte el día del evento.<br><br>¿Quieres que te prepare una propuesta detallada?`
+    boda_playa: {
+      html: `¡Una boda en la playa o destino! Eso tiene una magia especial ☀️<br><br>
+La luz natural hace el 50% del trabajo. Nosotras nos centramos en lo que viaja bien y aguanta:<br><br>
+<strong>· Arcos ligeros</strong> — con flores secas, pampa y telas de lino (no pesan, no se marchitan)<br>
+<strong>· Centros bajos</strong> — para que no los tumbe el viento<br>
+<strong>· Flores de temporada resistentes</strong> — proteas, claveles, girasoles, suculentas<br>
+<strong>· Elementos naturales del entorno</strong> — caracolas, madera, piedras<br><br>
+¿Es en España o en el extranjero? ¿Qué mes aproximadamente?`,
+      opts: ['En España, en el sur', 'En España, costa mediterránea', 'En el extranjero', 'Aún no lo sé']
     },
 
-    fallback: [
-      `Interesante 👌 Cuéntame más — ¿tienes alguna referencia visual o imagen que te inspire?`,
-      `Me apunto esa idea. ¿Tienes ya fecha aproximada para el evento?`,
-      `Perfecto. ¿Hay algún detalle que sea especialmente importante para ti? A veces un elemento clave define toda la estética.`,
-      `Entendido. ¿Habéis visitado ya el espacio donde será? La arquitectura nos influye mucho a la hora de diseñar.`,
-      `Muy buena pregunta. En AI Nudo Studio partimos siempre de una referencia visual — ¿tenéis tablero de Pinterest o algo que os haya gustado?`
+    // ── ELEMENTOS DE BODA ────────────────────────────────
+    arco: {
+      html: `El arco o altar es <strong>el elemento más fotografiado de toda la boda</strong> — merece toda la atención 📸<br><br>
+Tipos de arcos que hacemos:<br>
+<strong>· Arco floral completo</strong> — máximo impacto, flores frescas de temporada<br>
+<strong>· Arco semilleno</strong> — flores en una esquina o lado, más moderno<br>
+<strong>· Arco con pampa y telas</strong> — estilo boho, muy fotografiable<br>
+<strong>· Estructura metálica con follaje</strong> — minimalista y elegante<br>
+<strong>· Arco de madera rústico</strong> — con flores o sin ellas<br><br>
+El precio varía mucho según el tamaño y las flores elegidas — desde 350€ hasta 1.200€. ¿Tienes alguna referencia visual de lo que te gusta?`
+    },
+
+    centro_mesa: {
+      html: `Los centros de mesa marcan toda la estética del banquete 🌸<br><br>
+Las opciones más populares que hacemos:<br>
+<strong>· Centro alto (tipo columna floral)</strong> — muy impactante, ideal para fincas grandes<br>
+<strong>· Centro bajo y generoso</strong> — flores y verdes que se desbordan, más íntimo<br>
+<strong>· Centro corrido</strong> — para mesas imperiales, muy editorial<br>
+<strong>· Centro mixto flores + velas</strong> — combinación elegante y cálida<br>
+<strong>· Centro con flores secas</strong> — pampa, lino, lavanda — duran para siempre<br><br>
+El precio por mesa varía de <strong>45€ a 180€</strong> según complejidad. ¿Cuántas mesas aproximadamente tendréis?`
+    },
+
+    ramo_novia: {
+      html: `El ramo de novia 💐 — un elemento muy personal que coordinamos siempre con el resto de la decoración.<br><br>
+Estilos que más pedimos:<br>
+<strong>· Ramo redondo y compacto</strong> — clásico, siempre elegante<br>
+<strong>· Ramo en cascada</strong> — muy romántico, cae hacia abajo<br>
+<strong>· Ramo silvestre o desestructurado</strong> — boho, flores mezcladas sin orden aparente<br>
+<strong>· Ramo monobotánico</strong> — una sola flor en abundancia (peonías, rosas, ranúnculos)<br>
+<strong>· Ramo minimalista</strong> — pocas flores, mucho verde, muy editorial<br><br>
+¿Tienes ya vestido elegido? El ramo tiene que hablar el mismo idioma que el vestido.`,
+      opts: ['Vestido romántico y con vuelo', 'Vestido minimalista y recto', 'Vestido bohemio', 'Todavía no tengo vestido']
+    },
+
+    candy_bar: {
+      html: `La mesa de dulces o candy bar es un elemento que encanta a los invitados y queda increíble en fotos 🍰<br><br>
+Lo que incluimos normalmente:<br>
+<strong>· Estructura</strong> — mesa, carrito vintage, o mesa de madera<br>
+<strong>· Dulces y tarros</strong> — coordinados en color y estilo<br>
+<strong>· Tarjetas y rótulos</strong> — con la tipografía del evento<br>
+<strong>· Decoración floral</strong> — un pequeño arreglo que lo corona todo<br>
+<strong>· Packaging para llevar</strong> — cajitas o bolsitas para los invitados<br><br>
+Precio orientativo desde <strong>280€</strong> (montaje básico) hasta <strong>650€</strong> (montaje completo con dulces incluidos). ¿Queréis que incluya los dulces o solo la decoración?`
+    },
+
+    // ── EVENTOS ──────────────────────────────────────────
+    evento_intro: {
+      html: `¡Perfecto, un evento! 🎉<br><br>
+En AI Nudo Studio decoramos todo tipo de celebraciones con la misma filosofía que en las bodas: cada elemento tiene un porqué, y el conjunto tiene que contar una historia visual.<br><br>
+¿Qué tipo de evento estás organizando?`,
+      opts: ['Cumpleaños o fiesta privada', 'Evento corporativo o presentación', 'Aniversario de pareja', 'Bautizo o comunión', 'Graduación o despedida', 'Otro tipo de evento']
+    },
+
+    cumpleanos: {
+      html: `¡Un cumpleaños! Son súper divertidos de decorar porque se puede ser muy creativo 🎂<br><br>
+Lo que más solemos hacer:<br>
+<strong>· Mesa de dulces temática</strong> — el centro de la fiesta<br>
+<strong>· Arco de globos</strong> — clásico pero siempre funciona si está bien hecho<br>
+<strong>· Photocall personalizado</strong> — para las fotos de grupo<br>
+<strong>· Flores y centros de mesa</strong> — para la mesa principal<br>
+<strong>· Detalles de bienvenida</strong> — número, letra o nombre en globos gigantes<br><br>
+¿Cuántos años cumple y qué estilo os gusta más — algo elegante, algo más festivo o algo temático?`,
+      opts: ['Algo elegante y florido', 'Festivo y colorido', 'Estilo minimalista moderno', 'Tengo una temática en mente']
+    },
+
+    corporativo: {
+      html: `Los eventos corporativos requieren un enfoque diferente — la decoración tiene que <strong>reforzar la imagen de marca</strong> sin distraer del mensaje.<br><br>
+Lo que más hacemos para eventos de empresa:<br>
+<strong>· Centros florales</strong> — en los colores corporativos o en neutros elegantes<br>
+<strong>· Señalética y cartelería</strong> — rótulos, menús, directorios<br>
+<strong>· Photocall de marca</strong> — para ruedas de prensa o presentaciones<br>
+<strong>· Mesa de bienvenida</strong> — con logo y materiales de la empresa<br>
+<strong>· Decoración de sala completa</strong> — ambientación coherente de principio a fin<br><br>
+¿Tienes manual de imagen corporativa o colores definidos? Con eso podemos proponer algo muy concreto.`
+    },
+
+    aniversario: {
+      html: `¡Un aniversario! Qué bonito ❤️<br><br>
+Los aniversarios son muy especiales porque es una celebración muy íntima y personal. Podemos orientarlo de dos formas:<br><br>
+<strong>Si es una cena íntima para dos:</strong> flores preservadas que duran para siempre, mesa decorada con velas, petalos de rosa, champán...<br><br>
+<strong>Si es una celebración con familia/amigos:</strong> decoración completa del espacio, flores frescas, mesa principal decorada, photocall con la fecha del aniversario...<br><br>
+¿Es una sorpresa o lo planificáis juntos? ¿Cuántos años celebráis?`,
+      opts: ['Sorpresa para mi pareja', 'Lo organizamos juntos', 'Con familia y amigos', 'Es una cena para dos']
+    },
+
+    bautizo: {
+      html: `Bautizos y comuniones son celebraciones muy especiales, llenas de detalles bonitos 👶<br><br>
+Las paletas que mejor funcionan:<br>
+<strong>· Blanco + crema + verde suave</strong> — clásico y muy elegante<br>
+<strong>· Blanco + celeste</strong> — tradicional para niños<br>
+<strong>· Blanco + rosa palo</strong> — delicado para niñas<br>
+<strong>· Blanco + dorado</strong> — más sofisticado<br><br>
+Lo que más decoramos:<br>
+— Centro de mesa con flores pequeñas<br>
+— Mesa de dulces o candy bar temático<br>
+— Detalles para los invitados (bienvenida)<br>
+— Photocall con nombre del bebé o la fecha<br><br>
+¿Lo celebráis en casa o en un local? ¿Para cuántas personas?`
+    },
+
+    graduacion: {
+      html: `¡Una graduación o despedida! Genial 🎓<br><br>
+Para estos eventos solemos hacer algo más informal pero muy fotografiable:<br><br>
+<strong>· Photocall personalizado</strong> — con el año, el nombre de la promoción o "Bye bye"<br>
+<strong>· Globos de colores</strong> — número del año de graduación, letras, dorado/plateado<br>
+<strong>· Mesa de dulces</strong> — con la temática de la carrera o trabajo<br>
+<strong>· Centros de mesa</strong> — flores frescas en los colores de la fiesta<br><br>
+¿Cuántas personas sois aproximadamente y dónde lo celebráis?`
+    },
+
+    // ── REGALOS ──────────────────────────────────────────
+    regalo_intro: {
+      html: `¡Qué detalle tan bonito! 🎁<br><br>
+En AI Nudo Studio cuidamos los regalos como si fueran una pieza de diseño — la presentación es tan importante como el contenido. Regalamos experiencias visuales.<br><br>
+¿Para qué tipo de regalo buscas ideas?`,
+      opts: ['Ramo de flores naturales', 'Ramo de flores preservadas', 'Caja con flores y productos', 'Centro decorativo para el hogar', 'Algo muy especial y personalizado']
+    },
+
+    ramo_natural: {
+      html: `Los ramos de flores naturales son el regalo más emocional que existe 🌸<br><br>
+Lo que nos diferencia: no hacemos ramos "normales" — cada ramo que sale de aquí parece un objeto de diseño.<br><br>
+<strong>Nuestros estilos favoritos:</strong><br>
+· <strong>Monobotánico</strong> — solo peonías, solo rosas, solo ranúnculos. Impacta por la cantidad<br>
+· <strong>Silvestre y desestructurado</strong> — flores mezcladas, muy natural y fotogénico<br>
+· <strong>Minimalista</strong> — pocas flores perfectas + mucho verde oscuro<br>
+· <strong>Todo blanco</strong> — la opción más elegante y versátil<br><br>
+Los precios van desde <strong>35€</strong> (ramo pequeño) hasta <strong>120€</strong> (ramo generoso de impacto). ¿Para qué ocasión es?`,
+      opts: ['Cumpleaños', 'San Valentín / aniversario', 'Agradecimiento', 'Sin ocasión, porque sí']
+    },
+
+    ramo_preservado: {
+      html: `Las flores preservadas son algo muy especial — flores reales que duran <strong>años sin agua ni cuidados</strong> 🌹<br><br>
+Ideal como regalo porque:<br>
+· Duran 2-5 años manteniendo color y textura<br>
+· No necesitan ningún mantenimiento<br>
+· Parecen frescas pero son eternas<br>
+· Perfectas para personas que "matan las plantas"<br><br>
+Lo que hacemos con flores preservadas:<br>
+<strong>· Cúpulas de cristal</strong> — muy elegantes, desde 65€<br>
+<strong>· Cajas de madera o cartón</strong> — con tapa de cristal, desde 80€<br>
+<strong>· Ramos sueltos preservados</strong> — desde 55€<br>
+<strong>· Marcos con flores</strong> — para colgar en la pared<br><br>
+¿Lo quieres más clásico (rosas rojas) o más moderno (flores mixtas en colores neutros)?`
+    },
+
+    caja_regalo: {
+      html: `Las cajas regalo son nuestro producto más solicitado para regalar 🎁<br><br>
+Porque no es solo el contenido — es todo: la caja, el papel tissue, la cinta, la tarjeta escrita a mano, la presentación al abrirlo...<br><br>
+<strong>Lo que incluimos según el presupuesto:</strong><br>
+· Desde <strong>45€</strong>: caja con ramo pequeño de flores frescas + detalle pequeño<br>
+· Desde <strong>75€</strong>: caja con flores preservadas + vela aromática + producto selecto<br>
+· Desde <strong>120€</strong>: caja premium con flores, champán, trufas y tarjeta personalizada<br>
+· Desde <strong>200€</strong>: experiencia completa personalizada al 100%<br><br>
+¿Para quién es y qué le gusta? Con eso puedo darte una propuesta exacta.`
+    },
+
+    centro_hogar: {
+      html: `Un centro decorativo para el hogar — ¡un regalo que se ve todos los días! 🏡<br><br>
+Lo que más hacemos para regalar como decoración:<br>
+<strong>· Corona de flores preservadas</strong> — para la puerta de casa, desde 95€<br>
+<strong>· Centro de mesa con flores preservadas</strong> — desde 85€<br>
+<strong>· Composición en cuadro o marco</strong> — flores preservadas montadas, desde 110€<br>
+<strong>· Jardín vertical pequeño</strong> — plantas naturales en marco, desde 130€<br><br>
+Son regalos que sorprenden mucho porque no es lo que la gente espera recibir. ¿Sabes qué estilo tiene la casa de la persona?`,
+      opts: ['Estilo moderno y minimalista', 'Estilo cálido y acogedor', 'Estilo nórdico', 'No lo sé bien']
+    },
+
+    // ── ESTILOS ──────────────────────────────────────────
+    estilo_minimalista: {
+      html: `El estilo minimalista es nuestra firma ◻<br><br>
+La filosofía: <strong>que cada elemento justifique su presencia</strong>. Si algo no suma, sobra.<br><br>
+Cómo lo aplicamos:<br>
+· Paleta: blanco, crema, verde oscuro, negro<br>
+· Flores: pocas pero perfectas (una variedad, mucha cantidad)<br>
+· Espacios: que se vea la arquitectura del local<br>
+· Mesas: sin recargo, que el mantel y la vajilla protagonicen<br>
+· Tipografía: limpia, con mucho espacio en blanco<br><br>
+<strong>El resultado:</strong> parece más caro de lo que cuesta porque todo está elegido con criterio.<br><br>
+¿Tienes alguna referencia visual (Pinterest, Instagram) de lo que te imaginas?`
+    },
+
+    estilo_romantico: {
+      html: `El estilo romántico bien ejecutado es de las cosas más preciosas que decoramos 🌸<br><br>
+Lo que lo diferencia del recargado:<br>
+· Las flores fluyen y se desbordan, pero con estructura<br>
+· Paleta: blanco roto, crema, rosa palo, verde musgo<br>
+· Mucha luz de velas — fundamental para la atmósfera<br>
+· Telas vaporosas — gasa, tul, lino suave<br>
+· Detalles pequeños que sorprenden — flores en las servilletas, agua con flores...<br><br>
+<strong>Flores favoritas para este estilo:</strong> peonías, ranúnculos, glicinas, lilas, astilbes, dalias...<br><br>
+¿Queréis que sea más jardín inglés (desordenado precioso) o más provenzal (más ordenado y elegante)?`,
+      opts: ['Jardín inglés, exuberante', 'Provenzal, más ordenado', 'Una mezcla de los dos']
+    },
+
+    estilo_editorial: {
+      html: `El estilo editorial es el que más nos apasiona ◼<br><br>
+Es para parejas que quieren una boda que nadie haya visto — algo que parezca portada de revista.<br><br>
+Sus señas de identidad:<br>
+· Blanco y negro puro como base<br>
+· Flores en blanco, negro (si existen) o neutros muy fuertes<br>
+· Composiciones geométricas y asimétricas<br>
+· Elementos inesperados: plumas, metales, cristal<br>
+· Tipografía muy cuidada en papelería<br><br>
+<strong>El resultado en fotos es espectacular</strong> — el contraste hace que cada imagen parezca producida.<br><br>
+Este estilo necesita un fotógrafo que lo entienda. ¿Ya tenéis fotógrafo elegido?`,
+      opts: ['Sí, y entiende este estilo', 'Sí, pero no sé si encaja', 'Todavía buscamos fotógrafo']
+    },
+
+    estilo_boho: {
+      html: `El estilo boho natural — cuando está bien hecho, es una maravilla 🌿<br><br>
+El error más común es confundir boho con "desorganizado". El nuestro siempre tiene estructura:<br><br>
+· <strong>Flores</strong>: silvestres, de temporada, pampa, lavanda, cosmos, margaritas<br>
+· <strong>Verdes</strong>: eucalipto, helecho, ramas de olivo<br>
+· <strong>Materiales</strong>: madera, yute, macramé, lino crudo<br>
+· <strong>Paleta</strong>: terracota, crema, verde salvia, melocotón, blanco<br><br>
+Funciona especialmente bien en:<br>
+— Bodas al aire libre / jardín<br>
+— Fincas con madera y piedra<br>
+— Bodas de día con mucha luz natural<br><br>
+¿El evento es en interior o exterior?`,
+      opts: ['Exterior, jardín o campo', 'Interior pero con mucha luz', 'Mezcla de los dos']
+    },
+
+    estilo_lujo: {
+      html: `El lujo bien hecho no grita — susurra ✦<br><br>
+En AI Nudo Studio el lujo lo interpretamos como <strong>calidad en cada detalle</strong>, no como cantidad.<br><br>
+Los elementos que marcan la diferencia:<br>
+· Flores de primera calidad (importadas de Holanda si hace falta)<br>
+· Manteles de lino prensado o terciopelo<br>
+· Menaje premium — plata, dorado mate, cristal<br>
+· Iluminación de calidad — velas + luz cálida<br>
+· Papelería de lujo — tarjetones gruesos, letras doradas<br>
+· Detalles para los invitados — algo que se lleven a casa<br><br>
+Los espacios que mejor funcionan: fincas históricas, palacios, jardines con arquitectura. ¿Ya tenéis el espacio?`
+    },
+
+    // ── FLORES Y TEMPORADA ───────────────────────────────
+    flores_temporada: {
+      html: `La elección de flores de temporada es una de las decisiones más importantes 🌺<br><br>
+<strong>Por qué temporada importa:</strong> las flores de temporada son más frescas, más bonitas y <strong>hasta un 40% más baratas</strong> que las de importación.<br><br>
+<strong>Guía por épocas:</strong><br>
+· <strong>Primavera (mar-may)</strong>: peonías ⭐, lilas, ranúnculos, tulipanes, mimosa<br>
+· <strong>Verano (jun-ago)</strong>: girasoles, dalias, lavanda, zinnias, cosmos<br>
+· <strong>Otoño (sep-nov)</strong>: dalias ⭐, crisantemos, rosas de jardín, bayas, hojas<br>
+· <strong>Invierno (dic-feb)</strong>: anémonas, narcisos, amaryllis, ramas, hojas perennes<br><br>
+<strong>Todo el año</strong>: rosas, eucalipto, gypsophila, hortensias, claveles, limonium<br><br>
+¿En qué mes es tu evento? Te diré qué flores serán perfectas.`
+    },
+
+    // ── PRESUPUESTO ──────────────────────────────────────
+    presupuesto: {
+      html: `Hablemos de presupuesto con transparencia 💬<br><br>
+<strong>Orientación de precios en AI Nudo Studio:</strong><br><br>
+<strong>· Ramos y arreglos pequeños:</strong> 35€ – 120€<br>
+<strong>· Centro de mesa (por mesa):</strong> 45€ – 180€<br>
+<strong>· Arco o altar floral:</strong> 350€ – 1.200€<br>
+<strong>· Decoración boda completa:</strong> 1.500€ – 6.000€+<br>
+<strong>· Mesa de dulces:</strong> 280€ – 650€<br>
+<strong>· Cajas regalo:</strong> 45€ – 200€<br>
+<strong>· Flores preservadas:</strong> 55€ – 200€<br><br>
+El precio final siempre depende del número de flores, variedad, complejidad y tiempo de montaje.<br><br>
+¿Quieres que te prepare una propuesta con lo que necesitas? Escríbenos desde <a href="contacto.html" style="color:#111;font-weight:600">aquí</a> y te enviamos presupuesto sin compromiso en 24h.`
+    },
+
+    // ── CONSEJOS EXPERTOS ────────────────────────────────
+    consejo_tiempo: {
+      html: `Un consejo muy importante de experta 📅<br><br>
+<strong>¿Con cuánto tiempo hay que reservar?</strong><br><br>
+· <strong>Bodas en temporada alta (may-oct):</strong> mínimo 6-8 meses antes<br>
+· <strong>Bodas en temporada baja:</strong> 3-4 meses ya es suficiente<br>
+· <strong>Eventos y celebraciones:</strong> con 4-6 semanas suele ser suficiente<br>
+· <strong>Ramos y regalos de última hora:</strong> avisando 48-72h antes<br><br>
+<strong>Lo que más se agota rápido:</strong> fechas de verano, fines de semana de puente, y bodas en fincas muy conocidas de la zona.<br><br>
+Si tienes una fecha en mente, lo mejor es asegurarla cuanto antes — especialmente si es verano. ¿Ya tenéis fecha?`
+    },
+
+    consejo_local: {
+      html: `Antes de elegir la decoración, hay preguntas clave que hacer al local 🏛️<br><br>
+<strong>Pregunta siempre esto al espacio:</strong><br>
+· ¿Puedo clavar o colgar cosas de las paredes/techo?<br>
+· ¿Hay restricciones con velas (cera/llama viva)?<br>
+· ¿A qué hora podemos montar la decoración?<br>
+· ¿Hay espacio de almacenaje para nuestro material?<br>
+· ¿Tiene luz artificial o depende de la natural?<br>
+· ¿Cuánto tiempo tenemos para recoger al final?<br><br>
+Saber esto de antemano nos permite diseñar algo que realmente funcione en ese espacio, sin sorpresas el día del evento.<br><br>
+¿Ya tienes un local en mente?`
+    },
+
+    consejo_fotos: {
+      html: `Un consejo que pocos dicen pero que marca la diferencia 📸<br><br>
+<strong>Diseñamos la decoración pensando en las fotos:</strong><br><br>
+· Las flores en altura quedan mejor en foto que las flores bajas<br>
+· El blanco y crema refleja mejor la luz → fotos más luminosas<br>
+· Los espacios con profundidad (pasillo, arco) dan más perspectiva<br>
+· La iluminación cálida (velas + tungsteno) hace la piel más bonita<br>
+· Un elemento protagonista claro (arco, instalación) da a los fotógrafos algo con lo que trabajar<br><br>
+Si ya tienes fotógrafo, puede ser muy útil que hable con nosotras antes del evento para coordinar la decoración con su estilo de fotografía.`
+    },
+
+    // ── FALLBACK INTELIGENTES ────────────────────────────
+    fallbacks: [
+      { html: `Cuéntame más sobre lo que tienes en mente 👂<br><br>¿Tienes alguna imagen o referencia visual que te inspire? A veces es más fácil enseñar que describir — un tablero de Pinterest, una foto de Instagram, o simplemente una palabra que describa cómo quieres que se sienta el espacio.` },
+      { html: `Entendido 👌<br><br>Una pregunta clave para orientarme mejor: <strong>¿ya tenéis el espacio elegido?</strong><br><br>El local nos condiciona mucho la propuesta — altura del techo, color de las paredes, si entra luz natural, si hay jardín... Con eso puedo darte ideas mucho más concretas.` },
+      { html: `Interesante ✦<br><br>¿Sabes en qué mes va a ser? La época del año determina qué flores son más bonitas, más baratas y más disponibles. Para ciertas flores (peonías, lilas, ranúnculos) hay que reservar con tiempo porque solo están disponibles unos meses al año.` },
+      { html: `Perfecto 🌸<br><br>Una cosa que siempre pregunto: <strong>¿cómo de importantes son las fotos para vosotros?</strong><br><br>Si las fotos son muy importantes, diseñamos la decoración teniendo eso en cuenta — elementos con más altura, paletas que fotografían mejor, un elemento protagonista claro para el fotógrafo.<br><br>¿El fotógrafo ya está elegido?` },
+      { html: `Muy buena idea 👍<br><br>¿Hay algún elemento de decoración que tengas claro que quieres sí o sí? A veces hay una pieza que la persona tiene muy fija — el arco, las flores en el pelo, la mesa de dulces — y a partir de ahí construimos todo lo demás con coherencia.` },
+      { html: `Genial 💡<br><br>Para poder darte una propuesta lo más ajustada posible, ¿cuántas personas vendrán aproximadamente? Con eso puedo orientar el presupuesto y las necesidades de decoración de una forma mucho más realista.` }
     ]
   };
 
-  let fallbackIndex = 0;
+  let fbIdx = 0;
 
   // ── Funciones del sidebar ──
   function selectCategory(btn, cat) {
@@ -685,41 +983,45 @@
     document.querySelectorAll('.sidebar-sub').forEach(s => s.classList.remove('open'));
     btn.classList.add('active');
     document.getElementById('sub-' + cat).classList.add('open');
-    conversationState.category = cat;
-
-    const resp = agentResponses[cat];
-    if (resp && resp.intro) {
-      quickReply(cat === 'boda' ? 'Estoy planeando una boda' :
-                 cat === 'evento' ? 'Quiero organizar un evento' :
-                 'Busco ideas para un regalo', false);
-    }
+    ctx.category = cat;
+    const label = cat === 'boda' ? 'Estoy planeando una boda' : cat === 'evento' ? 'Quiero organizar un evento' : 'Busco ideas para un regalo';
+    quickReply(label, false);
   }
 
   function selectSubcat(btn, subcat) {
     document.querySelectorAll('.sidebar-sub-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    conversationState.subcat = subcat;
-    const resp = agentResponses[subcat];
-    if (resp) addAgentMessage(resp);
+    const map = {
+      'boda-civil': KB.boda_civil, 'boda-religiosa': KB.boda_religiosa,
+      'boda-destino': KB.boda_playa, 'boda-intima': KB.boda_intima,
+      'cumpleanos': KB.cumpleanos, 'corporativo': KB.corporativo,
+      'aniversario': KB.aniversario, 'bautizo': KB.bautizo,
+      'regalo-flores': KB.ramo_natural, 'regalo-caja': KB.caja_regalo,
+      'regalo-personal': KB.centro_hogar
+    };
+    const r = map[subcat];
+    if (r) respond(r);
   }
 
   function sendStyle(style) {
-    conversationState.style = style;
+    ctx.style = style;
     addUserMessage(`Estilo: ${style}`);
-    const resp = agentResponses.styles[style];
-    if (resp) setTimeout(() => addAgentMessage(resp), 700);
+    const map = {
+      'Minimalista': KB.estilo_minimalista, 'Romántico': KB.estilo_romantico,
+      'Editorial / B&N': KB.estilo_editorial, 'Boho natural': KB.estilo_boho,
+      'Lujo clásico': KB.estilo_lujo
+    };
+    const r = map[style] || KB.estilo_minimalista;
+    setTimeout(() => respond(r), 700);
   }
 
   function sendBudget(budget) {
-    conversationState.budget = budget;
+    ctx.budget = budget;
     addUserMessage(`Presupuesto: ${budget}`);
-    const resp = agentResponses.budgets[budget];
-    if (resp) setTimeout(() => addAgentMessage(resp +
-      `<br><br>¿Quieres que preparemos una propuesta personalizada? Puedes escribirnos directamente desde <a href="contacto.html" style="color:#111;font-weight:600">aquí</a>.`
-    ), 700);
+    setTimeout(() => respond(KB.presupuesto), 700);
   }
 
-  // ── Enviar mensaje del usuario ──
+  // ── Motor de respuestas ──
   function sendMessage() {
     const input = document.getElementById('chatInput');
     const text = input.value.trim();
@@ -731,68 +1033,86 @@
 
   function quickReply(text, showUser = true) {
     if (showUser) addUserMessage(text);
+    const t = text.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // sin tildes para matching
 
-    // Analizar texto y dar respuesta contextual
-    const lower = text.toLowerCase();
-    let response = null;
+    let r = null;
 
-    if (lower.includes('boda')) {
-      const r = agentResponses.boda;
-      response = buildAgentMsg(r.intro, r.opts);
-    } else if (lower.includes('evento') || lower.includes('fiesta') || lower.includes('celebrac')) {
-      const r = agentResponses.evento;
-      response = buildAgentMsg(r.intro, r.opts);
-    } else if (lower.includes('regalo') || lower.includes('detalle')) {
-      const r = agentResponses.regalo;
-      response = buildAgentMsg(r.intro, r.opts);
-    } else if (lower.includes('civil')) {
-      response = agentResponses['boda-civil'];
-    } else if (lower.includes('religiosa')) {
-      response = agentResponses['boda-religiosa'];
-    } else if (lower.includes('íntima') || lower.includes('intima')) {
-      response = agentResponses['boda-intima'];
-    } else if (lower.includes('destino') || lower.includes('aire libre')) {
-      response = agentResponses['boda-destino'];
-    } else if (lower.includes('cumple') || lower.includes('fiesta')) {
-      response = agentResponses.cumpleanos;
-    } else if (lower.includes('corporat')) {
-      response = agentResponses.corporativo;
-    } else if (lower.includes('aniversar')) {
-      response = agentResponses.aniversario;
-    } else if (lower.includes('minimalista')) {
-      response = agentResponses.styles['Minimalista'];
-    } else if (lower.includes('romántico') || lower.includes('romantico')) {
-      response = agentResponses.styles['Romántico'];
-    } else if (lower.includes('editorial') || lower.includes('blanco y negro')) {
-      response = agentResponses.styles['Editorial'];
-    } else if (lower.includes('boho') || lower.includes('natural')) {
-      response = agentResponses.styles['Boho'];
-    } else if (lower.includes('lujo') || lower.includes('clasico') || lower.includes('clásico')) {
-      response = agentResponses.styles['Lujo clásico'];
-    } else if (lower.includes('presupuesto') || lower.includes('precio') || lower.includes('cuánto') || lower.includes('cuanto')) {
-      response = `Trabajamos con diferentes rangos de presupuesto. Puedes seleccionar el tuyo en la columna izquierda, o si prefieres, cuéntame más sobre tu evento y te doy una orientación más precisa.<br><br>En general, para una boda completa trabajamos desde 800€ hasta proyectos de más de 3.000€ dependiendo del alcance.`;
-    } else if (lower.includes('flores') || lower.includes('floral')) {
-      response = `Las flores son el corazón de nuestras decoraciones 🌸<br><br>Trabajamos siempre con flores de temporada — es lo que garantiza frescura, calidad y una estética natural. Nuestras paletas favoritas son: todo blanco, blanco con verde oscuro, o crema con pampa.<br><br>¿Tienes preferencia por flores específicas?`;
-    } else if (lower.includes('contact') || lower.includes('propuesta') || lower.includes('presupuest')) {
-      response = `Perfecto 👌 Para prepararte una propuesta personalizada, lo mejor es que nos escribas directamente.<br><br>Puedes hacerlo desde nuestra <a href="contacto.html" style="color:#111;font-weight:600">página de contacto</a> — normalmente respondemos en menos de 24h.`;
+    // Categoría principal
+    if (/\bboda|casar|matrimon|novio|novia|ceremonia/.test(t)) {
+      ctx.category = 'boda';
+      if (/civil|ayuntamiento|juzgado/.test(t)) r = KB.boda_civil;
+      else if (/iglesia|religi/.test(t)) r = KB.boda_religiosa;
+      else if (/intima|pequena|pocos/.test(t)) r = KB.boda_intima;
+      else if (/playa|destino|exterior|aire libre/.test(t)) r = KB.boda_playa;
+      else r = KB.boda_intro;
+
+    } else if (/evento|fiesta|celebrac|cumple|aniversar|bautizo|comunion|gradua|corporat|empresa/.test(t)) {
+      ctx.category = 'evento';
+      if (/cumple/.test(t)) r = KB.cumpleanos;
+      else if (/corporat|empresa|negocio|trabajo/.test(t)) r = KB.corporativo;
+      else if (/aniversar/.test(t)) r = KB.aniversario;
+      else if (/bautizo|comunion/.test(t)) r = KB.bautizo;
+      else if (/gradua|despedida/.test(t)) r = KB.graduacion;
+      else r = KB.evento_intro;
+
+    } else if (/regalo|detalle|sorpresa|obsequio/.test(t)) {
+      ctx.category = 'regalo';
+      if (/preservad|eterno|dura/.test(t)) r = KB.ramo_preservado;
+      else if (/caja|pack|set/.test(t)) r = KB.caja_regalo;
+      else if (/hogar|casa|decoracion/.test(t)) r = KB.centro_hogar;
+      else if (/ramo|flores|natural|fresc/.test(t)) r = KB.ramo_natural;
+      else r = KB.regalo_intro;
+
+    // Elementos concretos
+    } else if (/arco|altar|estructura/.test(t)) r = KB.arco;
+    else if (/centro.*mesa|mesa.*centro/.test(t)) r = KB.centro_mesa;
+    else if (/ramo.*novia|novia.*ramo/.test(t)) r = KB.ramo_novia;
+    else if (/candy|dulces|mesa.*dulce|postre/.test(t)) r = KB.candy_bar;
+
+    // Estilos
+    else if (/minimal/.test(t)) r = KB.estilo_minimalista;
+    else if (/romantic/.test(t)) r = KB.estilo_romantico;
+    else if (/editorial|blanco.*negro|negro.*blanco/.test(t)) r = KB.estilo_editorial;
+    else if (/boho|natural|silvestre/.test(t)) r = KB.estilo_boho;
+    else if (/lujo|luxury|clasico|premium/.test(t)) r = KB.estilo_lujo;
+
+    // Flores
+    else if (/flor|peon|rosa|lirio|tulipan|girasol|lavanda|eucalipto|pampa/.test(t)) r = KB.flores_temporada;
+
+    // Presupuesto / precio
+    else if (/precio|presupuesto|cuanto|cuesta|coste|euro|dinero/.test(t)) r = KB.presupuesto;
+
+    // Consejos
+    else if (/tiempo|cuando|reservar|anticipacion/.test(t)) r = KB.consejo_tiempo;
+    else if (/local|espacio|salon|finca|pregunt/.test(t)) r = KB.consejo_local;
+    else if (/foto|fotograf|imagen/.test(t)) r = KB.consejo_fotos;
+
+    // Contacto / propuesta
+    else if (/contact|propuesta|presupuest|escribir|llamar|whatsapp/.test(t)) {
+      r = { html: `Perfecto 👌<br><br>Para prepararte una propuesta personalizada sin compromiso, escríbenos directamente desde nuestra <a href="contacto.html" style="color:#111;font-weight:600">página de contacto</a>.<br><br>Respondemos en menos de 24h con una propuesta adaptada a tu evento, estilo y presupuesto.` };
+
+    // Temporada / mes
+    } else if (/primavera|verano|otono|invierno|enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre/.test(t)) {
+      r = KB.flores_temporada;
+
+    // Fallback inteligente
     } else {
-      response = agentResponses.fallback[fallbackIndex % agentResponses.fallback.length];
-      fallbackIndex++;
+      r = KB.fallbacks[fbIdx % KB.fallbacks.length];
+      fbIdx++;
     }
 
-    if (response) {
+    if (r) {
       showTyping();
-      const delay = 600 + Math.min(text.length * 8, 800);
-      setTimeout(() => {
-        removeTyping();
-        addAgentMessage(typeof response === 'string' ? response : response.html, response.opts);
-      }, delay);
+      setTimeout(() => { removeTyping(); respond(r); }, 700 + Math.min(text.length * 6, 700));
     }
   }
 
-  function buildAgentMsg(html, opts) {
-    return { html, opts };
+  function respond(r) {
+    addAgentMessage(r.html, r.opts);
   }
+
+  function buildAgentMsg(html, opts) { return { html, opts }; }
 
   // ── Añadir mensajes al DOM ──
   function addUserMessage(text) {
