@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Services | AI NUDO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .cinematic-gradient {
+            background: linear-gradient(45deg, #5e5e5e, #525252);
+        }
+        .glass-header {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#d5dcd0",
+                        "surface-container": "#ecefe7",
+                        "tertiary-container": "#f4f4ef",
+                        "primary-dim": "#525252",
+                        "surface": "#fafaf5",
+                        "on-tertiary-container": "#5b5c59",
+                        "surface-container-low": "#f3f4ee",
+                        "on-secondary-container": "#525151",
+                        "on-tertiary": "#f9f9f4",
+                        "on-primary-fixed": "#3f3f3f",
+                        "secondary-fixed": "#e5e2e1",
+                        "error": "#9e3f4e",
+                        "error-container": "#ff8b9a",
+                        "secondary-dim": "#545353",
+                        "on-background": "#2e342d",
+                        "outline": "#767c74",
+                        "outline-variant": "#aeb4aa",
+                        "tertiary": "#5e605c",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#484a47",
+                        "on-secondary-fixed": "#403f3f",
+                        "tertiary-fixed": "#f4f4ef",
+                        "primary-fixed": "#e2e2e2",
+                        "secondary": "#605f5f",
+                        "inverse-surface": "#0d0f0c",
+                        "on-secondary": "#fbf8f8",
+                        "surface-bright": "#fafaf5",
+                        "on-primary-container": "#525252",
+                        "surface-container-high": "#e5eae0",
+                        "on-surface": "#2e342d",
+                        "surface-container-highest": "#dee4da",
+                        "error-dim": "#4f0116",
+                        "surface-variant": "#dee4da",
+                        "on-primary": "#f8f8f8",
+                        "on-surface-variant": "#5b6159",
+                        "on-primary-fixed-variant": "#5b5b5b",
+                        "on-tertiary-fixed-variant": "#656763",
+                        "tertiary-dim": "#525450",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "primary-container": "#e2e2e2",
+                        "on-error-container": "#782232",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "on-error": "#fff7f7",
+                        "inverse-on-surface": "#9c9d99",
+                        "secondary-container": "#e5e2e1",
+                        "primary-fixed-dim": "#d4d4d4",
+                        "background": "#fafaf5",
+                        "inverse-primary": "#ffffff",
+                        "primary": "#5e5e5e",
+                        "surface-tint": "#5e5e5e",
+                        "tertiary-fixed-dim": "#e5e6e1"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased selection:bg-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full tonal-shift bg-surface-container-low">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer">menu</span>
+</div>
+<div class="text-xl font-bold tracking-[0.2em] text-on-surface font-headline">AI NUDO</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer">shopping_bag</span>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-20 text-center">
+<h1 class="font-headline text-5xl md:text-7xl font-light tracking-tight text-on-surface mb-6">Our Services</h1>
+<p class="max-w-2xl mx-auto text-on-surface-variant text-lg leading-relaxed">
+                We orchestrate moments into visual legacies. From the intimacy of a vow to the grandeur of an event, every service is a curated narrative of your most precious chapters.
+            </p>
+</section>
+<!-- Services Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+<!-- Weddings Card -->
+<div class="group relative flex flex-col">
+<div class="aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-high transition-all duration-500 group-hover:scale-[1.02]">
+<img alt="Wedding couple" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" data-alt="elegant wedding couple in a sun-drenched coastal setting at dusk, soft warm golden hour light, cinematic high-fashion editorial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxzhMTFCQKgGLBUzStY1nHLyjNbBfs-Ywr9meohauBwHtWaZcqB6XKU1JnGcbHpROfaifJIlilH9KLdr5cRNqnPoL-IjskX15iK3fCFaUkds-SKUm1rzjgVwqEobPt-2BHFtSpdE5G50P46Re24n86BSF8m9S-M1xku9Azl8q-rjtDahZVAO0K18LAghsraqo_beilkQA9ZZt9L2yE9h25zueZGem8dy1Q3L-2_HqTI1J2cS3HXP4ESa0OUaIjVti5tJYT9mZoPZk"/>
+</div>
+<div class="mt-8">
+<h2 class="font-headline text-3xl font-bold tracking-tight mb-2">Weddings</h2>
+<p class="text-on-surface-variant text-sm tracking-wide uppercase font-medium font-inter">Cinematic Storytelling</p>
+</div>
+<div class="mt-4 flex items-center">
+<button class="text-xs font-bold tracking-[0.2em] uppercase text-primary hover:opacity-70 transition-opacity">Explore Gallery</button>
+<span class="material-symbols-outlined text-xs ml-2">arrow_forward</span>
+</div>
+</div>
+<!-- Events Card -->
+<div class="group relative flex flex-col md:mt-16">
+<div class="aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-high transition-all duration-500 group-hover:scale-[1.02]">
+<img alt="Grand event scene" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" data-alt="opulent gala dinner with long tables, crystal glassware, and warm candlelight in a historic architectural hall, moody sophisticated ambiance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnyG4CRB-Jwhn7CHIznl-R3p92hJhI9_KNeNg50u89WrbHgY9fTq8vaQaiooPDAr1tDXLqbXw4FumPjpHuOjSMpdZrgt-2gnWAnSFXTONQ_KsCCK8oDC74yQjcVnrf8F78hsXL9sT2PDTSwKqSuJKzeC___aidYsVzpRLqx0ldwM7NQl3VPdFftoV1rNwxlnxwhYYa3xM5MwUtKZ01WVuhRWA3RTIYGyGHpLcTzTJR2Et9ohJyMImHFKAfkp44y5j26Rry5fvOaic"/>
+</div>
+<div class="mt-8">
+<h2 class="font-headline text-3xl font-bold tracking-tight mb-2">Events</h2>
+<p class="text-on-surface-variant text-sm tracking-wide uppercase font-medium font-inter">Cultural Curations</p>
+</div>
+<div class="mt-4 flex items-center">
+<button class="text-xs font-bold tracking-[0.2em] uppercase text-primary hover:opacity-70 transition-opacity">View Portfolio</button>
+<span class="material-symbols-outlined text-xs ml-2">arrow_forward</span>
+</div>
+</div>
+<!-- Gifts Card -->
+<div class="group relative flex flex-col md:mt-32">
+<div class="aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-high transition-all duration-500 group-hover:scale-[1.02]">
+<img alt="Curated gift box" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" data-alt="luxury curated gift set with linen textures, artisanal candles and bespoke stationery on a clean stone surface, bright airy minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyov500mkUD04P74YFt6HCBM9Hl3G2Q-mlcCdUo4K5Cb_bgs8uXDikTn2Yvmp8SKwBtP7WkG5G0pjeDe4SAJtaCWQpDjeEOWfagaL2B8zQ05Mdng4wQ2c3yEmaEo3VkiDN4kplNh-6D3opodrYibTGYEQ8mouuPUfl9x4-1WwHklQeHgz8vTP7tO3bfaba71iRQ0Vc4w7D_-x6vbffDIgAWaIJSi5s4JdzdWsAR-Mvui70hNuXhmoLqGGZ_t_Hg23OXSy8TIA-2Wc"/>
+</div>
+<div class="mt-8">
+<h2 class="font-headline text-3xl font-bold tracking-tight mb-2">Gifts</h2>
+<p class="text-on-surface-variant text-sm tracking-wide uppercase font-medium font-inter">The Art of Giving</p>
+</div>
+<div class="mt-4 flex items-center">
+<button class="text-xs font-bold tracking-[0.2em] uppercase text-primary hover:opacity-70 transition-opacity">Shop Collection</button>
+<span class="material-symbols-outlined text-xs ml-2">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Call to Action Section (Tonal Shift) -->
+<section class="mt-32 p-12 md:p-24 bg-surface-container-low rounded-xl text-center">
+<h3 class="font-headline text-4xl font-light mb-8">Ready to curate your legacy?</h3>
+<div class="flex flex-col md:flex-row justify-center gap-6">
+<button class="cinematic-gradient text-on-primary font-label px-10 py-4 rounded-full text-sm font-bold tracking-widest uppercase transition-transform hover:scale-105 active:scale-95">
+                    Start a Project
+                </button>
+<button class="border border-outline-variant/30 text-on-surface font-label px-10 py-4 rounded-full text-sm font-bold tracking-widest uppercase hover:bg-surface-container-high transition-colors">
+                    The Process
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center pt-3 pb-6 px-4 bg-surface/90 backdrop-blur-lg z-50 md:hidden">
+<a class="flex flex-col items-center justify-center text-stone-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold scale-110" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Portfolio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400" href="#">
+<span class="material-symbols-outlined">featured_seasonal_and_gifts</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Gifts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Booking</span>
+</a>
+</nav>
+<!-- Desktop Navigation Cluster (Top Right) -->
+<div class="hidden md:flex fixed top-0 right-24 h-16 items-center z-[60] gap-8">
+<a class="text-xs font-bold tracking-[0.2em] uppercase text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-xs font-bold tracking-[0.2em] uppercase text-primary border-b-2 border-primary pb-1" href="#">Services</a>
+<a class="text-xs font-bold tracking-[0.2em] uppercase text-on-surface-variant hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="text-xs font-bold tracking-[0.2em] uppercase text-on-surface-variant hover:text-primary transition-colors" href="#">Journal</a>
+</div>
+</body></html>

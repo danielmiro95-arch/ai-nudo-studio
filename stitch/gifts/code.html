@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@200;300;400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d5dcd0",
+              "surface-container": "#ecefe7",
+              "tertiary-container": "#f4f4ef",
+              "primary-dim": "#525252",
+              "surface": "#fafaf5",
+              "on-tertiary-container": "#5b5c59",
+              "surface-container-low": "#f3f4ee",
+              "on-secondary-container": "#525151",
+              "on-tertiary": "#f9f9f4",
+              "on-primary-fixed": "#3f3f3f",
+              "secondary-fixed": "#e5e2e1",
+              "error": "#9e3f4e",
+              "error-container": "#ff8b9a",
+              "secondary-dim": "#545353",
+              "on-background": "#2e342d",
+              "outline": "#767c74",
+              "outline-variant": "#aeb4aa",
+              "tertiary": "#5e605c",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed": "#484a47",
+              "on-secondary-fixed": "#403f3f",
+              "tertiary-fixed": "#f4f4ef",
+              "primary-fixed": "#e2e2e2",
+              "secondary": "#605f5f",
+              "inverse-surface": "#0d0f0c",
+              "on-secondary": "#fbf8f8",
+              "surface-bright": "#fafaf5",
+              "on-primary-container": "#525252",
+              "surface-container-high": "#e5eae0",
+              "on-surface": "#2e342d",
+              "surface-container-highest": "#dee4da",
+              "error-dim": "#4f0116",
+              "surface-variant": "#dee4da",
+              "on-primary": "#f8f8f8",
+              "on-surface-variant": "#5b6159",
+              "on-primary-fixed-variant": "#5b5b5b",
+              "on-tertiary-fixed-variant": "#656763",
+              "tertiary-dim": "#525450",
+              "on-secondary-fixed-variant": "#5c5b5b",
+              "primary-container": "#e2e2e2",
+              "on-error-container": "#782232",
+              "secondary-fixed-dim": "#d6d4d3",
+              "on-error": "#fff7f7",
+              "inverse-on-surface": "#9c9d99",
+              "secondary-container": "#e5e2e1",
+              "primary-fixed-dim": "#d4d4d4",
+              "background": "#fafaf5",
+              "inverse-primary": "#ffffff",
+              "primary": "#5e5e5e",
+              "surface-tint": "#5e5e5e",
+              "tertiary-fixed-dim": "#e5e6e1"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .satin-gradient {
+        background: linear-gradient(45deg, #5e5e5e, #525252);
+      }
+      .glass-header {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 glass-header">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:opacity-70 transition-opacity" data-icon="menu">menu</span>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2">
+<h1 class="text-xl font-bold tracking-[0.2em] text-on-surface font-headline uppercase">AI NUDO</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:opacity-70 transition-opacity" data-icon="shopping_bag">shopping_bag</span>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto">
+<!-- Hero Intro Section -->
+<section class="mb-16 text-center">
+<h2 class="text-5xl md:text-7xl font-light font-headline tracking-tighter text-on-surface mb-6">Curated Gifts</h2>
+<div class="w-24 h-px bg-outline-variant/30 mx-auto mb-8"></div>
+<p class="max-w-xl mx-auto text-on-surface-variant font-body leading-relaxed">
+                A selection of digital and physical heirlooms designed to celebrate life's most cinematic chapters. Each piece is hand-selected to bridge the gap between memory and art.
+            </p>
+</section>
+<!-- Product Grid: Asymmetric Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+<!-- Featured Product (Large) -->
+<div class="md:col-span-8 group">
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low transition-transform duration-500 hover:scale-[1.01]">
+<img alt="" class="w-full aspect-[16/9] object-cover mix-blend-multiply opacity-90 transition-opacity group-hover:opacity-100" data-alt="Luxurious wooden gift box with silk ribbon and artisanal candle on a clean white surface with soft natural shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd_DoNxJ0QUbJLoaE8Edjcf4cIS1xvTo3u70Ol7idgmA7nt_LpWMcue__iauNa1us3MGU5CLApxErgXzQGEdTXpsa6qPSbIss0pP3AUhJPLS-wbJbNpoJTVMcwjAPRaFa3AFHuHvbl5-QXB1PX2hEl7EEWWsSXF-qkd6EugzQEy4yVb5gV90k4WJsmI_pXrIM5zTx4slqh85GgwzFpC4tLDqHelijoMN1mJqOR4NX5IBtFhIpE_MLmUQH-E-3h3vwjAym8buFxSqY"/>
+<div class="absolute bottom-8 left-8 bg-surface-container-lowest p-8 rounded-xl shadow-xl max-w-md translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-medium mb-3 block">Limited Edition</span>
+<h3 class="text-3xl font-headline font-light mb-4 text-on-surface">The Signature Archivist Box</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">A bespoke wooden vessel containing your printed gallery, a high-fidelity film reel, and a scent profile designed to evoke the specific season of your event.</p>
+<div class="flex items-center justify-between">
+<span class="text-xl font-headline font-medium text-primary">$450.00</span>
+<button class="satin-gradient text-on-primary px-8 py-3 rounded-full text-xs uppercase tracking-widest font-medium transition-transform active:scale-95">Customize</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Card 1 -->
+<div class="md:col-span-4 flex flex-col justify-end">
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="mb-6 rounded-lg overflow-hidden">
+<img alt="" class="w-full aspect-square object-cover" data-alt="Minimalist gold foil greeting card on textured ivory paper with delicate calligraphy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzMhT4aG2WJrBn7zRgsohk7Khwla6RbEPGaMO6_7pdn7Knb8sMgS1Ef42GHHM3WNw6Yvmk8T14o7vPAsfzwVTTj0H5NFPv5nD7AoCW7X6tSsIbwiJ41turbhRVWyU89nhs9pwKSakw-uVGsSPG7zjlX_E6ExhqVavYGpCagdqCyjLFBInM7fqvfzAuUlC3M5uzvJFE545Q5Jt_w76k1nW8PJQ4hmd09jGCnGyTD-ceZYRDM9faPmE5RzOlLyP9Nt7CDiCI3P-yl_k"/>
+</div>
+<h4 class="text-lg font-headline font-semibold text-on-surface mb-2">Artisan Stationery Set</h4>
+<p class="text-sm text-on-surface-variant mb-6">Hand-pressed cotton paper with custom monogramming and wax seal finish.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-medium">$85.00</span>
+<button class="text-on-surface text-[10px] uppercase tracking-widest font-bold border-b border-outline-variant/30 pb-1 hover:border-primary transition-colors">View</button>
+</div>
+</div>
+</div>
+<!-- Standard Grid Row -->
+<div class="md:col-span-4 group">
+<div class="bg-surface-container-low rounded-xl overflow-hidden mb-6">
+<img alt="" class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Ceramic candle in a matte gray vessel sitting on a marble plinth with soft moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbslDH2972aUciWVycfaZs3zbgBDeIFjP56xL71Ss38tGe91waDt9mB8ZCZi-ToIxjJNtoB2BmeR7-aC0F0nZD_SYrml96p5rtr8Mw-jycCSTntRPi6BM84XOSQ8spmCNwe_84POHwSIK0sRgEkBk_r_XiGFe1r5uTU8LJvOt14vHOvOmHjumncpfsn3AhCwlYJvxlA_qG_dQKaYShGJcrzAwkepH7RFrW-hPS8OxuMH6M2vdmRPZlGufGFIpz3vmB5-h-XrHGyCs"/>
+</div>
+<div class="px-2">
+<h4 class="text-lg font-headline font-medium text-on-surface">Velvet Scent Profile No. 4</h4>
+<span class="text-primary-dim font-headline font-light tracking-tight text-xl block mt-1">$62.00</span>
+<button class="mt-4 w-full border border-outline-variant/20 py-3 rounded-full text-[10px] uppercase tracking-widest font-bold text-on-surface hover:bg-on-surface hover:text-surface transition-colors">Add to Selection</button>
+</div>
+</div>
+<div class="md:col-span-4 group">
+<div class="bg-surface-container-low rounded-xl overflow-hidden mb-6">
+<img alt="" class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Macro shot of a high-quality leather bound photo album with thick cream-colored pages" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp2y4xJzxc6TPrizhTYKr2HAw2ysh37MqgxMzzFNhNG2XuwjmC5U3pJfGnOMfEb98O_6G2a05g_T1jskZInTQb-eMMf-FsM-4u30ROQ8K3JFN91KedTTD3yTPRbrf37JSUvAhalOzjldioi2rFjaaezmgDdxz5L9cXEcXHNGUn1f0y7VZLIgpbTcbGnJemG4GXb5Zoc2KSmT1jDm0SR0taXv2cVLG97fy_li9aBIpkofokPVrFL1OJQ-pqb9St_Uim5WAJRZwMEv8"/>
+</div>
+<div class="px-2">
+<h4 class="text-lg font-headline font-medium text-on-surface">Leather Heirloom Album</h4>
+<span class="text-primary-dim font-headline font-light tracking-tight text-xl block mt-1">$320.00</span>
+<button class="mt-4 w-full border border-outline-variant/20 py-3 rounded-full text-[10px] uppercase tracking-widest font-bold text-on-surface hover:bg-on-surface hover:text-surface transition-colors">Customize</button>
+</div>
+</div>
+<div class="md:col-span-4 group">
+<div class="bg-surface-container-low rounded-xl overflow-hidden mb-6">
+<img alt="" class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Set of minimalist crystal glassware on a reflective surface with bright ethereal lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoGl6yw84bdyUA2DS9PqgbvQOx8Gq6dKYik5McLkTvPzaJH5o1NTQL-rCzQuoQN7ysftm_4sGQFE5iPeXl5NUX0QXDAYR0pd_OMiyadkrRPMRnjPS3x2VX0lYH3Ydt6-Z0ZrOrthuiAE95-4AdyjnJhPdY4j1_-eVnJiKFeauCvYzlTEHNUxxLkVN2W6RvMA0q30nPfWebjMzMy-H1as032eKQ-aCXiMPeOFfI-iLVqubj-bU40WV4UPAXc_nlfqhmgYiEcHRSj-U"/>
+</div>
+<div class="px-2">
+<h4 class="text-lg font-headline font-medium text-on-surface">The Toasting Crystal Set</h4>
+<span class="text-primary-dim font-headline font-light tracking-tight text-xl block mt-1">$145.00</span>
+<button class="mt-4 w-full border border-outline-variant/20 py-3 rounded-full text-[10px] uppercase tracking-widest font-bold text-on-surface hover:bg-on-surface hover:text-surface transition-colors">Add to Selection</button>
+</div>
+</div>
+</div>
+<!-- Narrative Section -->
+<section class="mt-32 mb-20">
+<div class="flex flex-col md:flex-row items-center gap-16">
+<div class="md:w-1/2 relative">
+<div class="absolute -top-10 -left-10 w-40 h-40 bg-surface-container-high rounded-full -z-10 opacity-40"></div>
+<img alt="" class="rounded-xl shadow-2xl relative z-10 w-full h-[500px] object-cover" data-alt="Atmospheric shot of hands tying a silk ribbon on a gift package with soft focus floral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl5eLMvBt0kGXRXvhizkXJmCeylIGhguJQPbuE9y9NFtsOC92kTUD064UX_hdOz2rtlHVO40HRozNQGC3jpw6KVJ40jjXKgSkM_RrDF8kbawm6NDAkpZChPbMCxzFdezgMOllPEDeKCyHZJbmdto7GTmiaoMhMeNYJHImWhabLxRqk2IHe9bgPRki50SNVZCRa4veLMMnpoHAjen_mH1FCV1EGTNskCXjZMyrNRf0z1Hv-ftwBUHant-gU6qs4kPaIOJGbEVR5TZc"/>
+</div>
+<div class="md:w-1/2 space-y-8">
+<h3 class="text-4xl font-headline font-light leading-tight text-on-surface">The Art of the Personal Touch</h3>
+<p class="text-on-surface-variant font-body leading-relaxed text-lg">
+                        Every gift box curated by AI Nudo Studio is more than just a collection of items. It is a sensory story. We specialize in creating "The Reveal"—that singular moment when your loved one opens a portal to a memory.
+                    </p>
+<div class="flex flex-col gap-6">
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="flare">flare</span>
+<div>
+<h5 class="font-headline font-bold text-on-surface">Hand-Selected Curation</h5>
+<p class="text-sm text-on-surface-variant">We partner with independent artisans to source materials that last a lifetime.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="architecture">architecture</span>
+<div>
+<h5 class="font-headline font-bold text-on-surface">Bespoke Monogramming</h5>
+<p class="text-sm text-on-surface-variant">Personalized engraving and embroidery available on all leather and wood products.</p>
+</div>
+</div>
+</div>
+<button class="text-primary font-headline font-bold tracking-widest uppercase text-xs border-b-2 border-primary pb-1 inline-block">Learn About Our Process</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center pt-3 pb-6 px-4 bg-surface/90 glass-header z-50">
+<div class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 cursor-pointer hover:text-primary transition-opacity">
+<span class="material-symbols-outlined text-2xl" data-icon="home">home</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 cursor-pointer hover:text-primary transition-opacity">
+<span class="material-symbols-outlined text-2xl" data-icon="grid_view">grid_view</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Services</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 cursor-pointer hover:text-primary transition-opacity">
+<span class="material-symbols-outlined text-2xl" data-icon="auto_stories">auto_stories</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Portfolio</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-white font-bold scale-110">
+<span class="material-symbols-outlined text-2xl" data-icon="featured_seasonal_and_gifts" style="font-variation-settings: 'FILL' 1;">featured_seasonal_and_gifts</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Gifts</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 cursor-pointer hover:text-primary transition-opacity">
+<span class="material-symbols-outlined text-2xl" data-icon="calendar_today">calendar_today</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Booking</span>
+</div>
+</nav>
+</body></html>

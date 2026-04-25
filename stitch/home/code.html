@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI NUDO | The Cinematic Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d5dcd0",
+              "surface-container": "#ecefe7",
+              "tertiary-container": "#f4f4ef",
+              "primary-dim": "#525252",
+              "surface": "#fafaf5",
+              "on-tertiary-container": "#5b5c59",
+              "surface-container-low": "#f3f4ee",
+              "on-secondary-container": "#525151",
+              "on-tertiary": "#f9f9f4",
+              "on-primary-fixed": "#3f3f3f",
+              "secondary-fixed": "#e5e2e1",
+              "error": "#9e3f4e",
+              "error-container": "#ff8b9a",
+              "secondary-dim": "#545353",
+              "on-background": "#2e342d",
+              "outline": "#767c74",
+              "outline-variant": "#aeb4aa",
+              "tertiary": "#5e605c",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed": "#484a47",
+              "on-secondary-fixed": "#403f3f",
+              "tertiary-fixed": "#f4f4ef",
+              "primary-fixed": "#e2e2e2",
+              "secondary": "#605f5f",
+              "inverse-surface": "#0d0f0c",
+              "on-secondary": "#fbf8f8",
+              "surface-bright": "#fafaf5",
+              "on-primary-container": "#525252",
+              "surface-container-high": "#e5eae0",
+              "on-surface": "#2e342d",
+              "surface-container-highest": "#dee4da",
+              "error-dim": "#4f0116",
+              "surface-variant": "#dee4da",
+              "on-primary": "#f8f8f8",
+              "on-surface-variant": "#5b6159",
+              "on-primary-fixed-variant": "#5b5b5b",
+              "on-tertiary-fixed-variant": "#656763",
+              "tertiary-dim": "#525450",
+              "on-secondary-fixed-variant": "#5c5b5b",
+              "primary-container": "#e2e2e2",
+              "on-error-container": "#782232",
+              "secondary-fixed-dim": "#d6d4d3",
+              "on-error": "#fff7f7",
+              "inverse-on-surface": "#9c9d99",
+              "secondary-container": "#e5e2e1",
+              "primary-fixed-dim": "#d4d4d4",
+              "background": "#fafaf5",
+              "inverse-primary": "#ffffff",
+              "primary": "#5e5e5e",
+              "surface-tint": "#5e5e5e",
+              "tertiary-fixed-dim": "#e5e6e1"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .cinematic-overlay {
+            background: linear-gradient(to bottom, rgba(46, 52, 45, 0.4) 0%, rgba(46, 52, 45, 0) 40%, rgba(46, 52, 45, 0.7) 100%);
+        }
+        .satin-gradient {
+            background: linear-gradient(45deg, #5e5e5e 0%, #525252 100%);
+        }
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:opacity-70 transition-opacity">menu</span>
+</div>
+<div class="text-xl font-bold tracking-[0.2em] text-on-surface uppercase font-headline">AI NUDO</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:opacity-70 transition-opacity">shopping_bag</span>
+</div>
+</header>
+<main>
+<!-- Full-screen Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="atmospheric cinematic shot of a bride and groom embracing in a sun-drenched historical villa garden with soft morning light and lens flare" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGUX48IZIi8J4yNH2Spy07O7G7UrpclHos1Q62rsU9CNeMEY0D3pWt7oZYtG3d3q8dnb6gjHzgeoYxwGPhobpualGAXu1JytrgaCGdA1jE6-XMQA9a5xgq2glcYqFcCAnj7aiK26Ux3-fWDruIjaYARXCtQXmUgEUOI3v48OwOXBcQoQ-davSgMfKMxavyWFI227QapuZx609faxpXBIUOtubzSuiuZzCZfmVENsC7g4qkYh8Cgg2Oli4pdLqYU8yhBAV6WxIxTNU"/>
+<div class="absolute inset-0 cinematic-overlay"></div>
+</div>
+<div class="relative z-10 text-center px-6 max-w-4xl">
+<h1 class="text-on-primary font-headline text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+                    Every Moment <br/> A Digital Heirloom
+                </h1>
+<p class="text-on-primary/90 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-10 font-body">
+                    Crafting cinematic experiences that preserve the soul of your most cherished celebrations.
+                </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-6">
+<button class="satin-gradient text-on-primary px-10 py-4 rounded-full font-label text-sm uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 duration-300">
+                        Explore Gallery
+                    </button>
+<button class="border border-outline-variant/30 text-on-primary backdrop-blur-md px-10 py-4 rounded-full font-label text-sm uppercase tracking-widest hover:bg-white/10 transition-all">
+                        Our Process
+                    </button>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+<span class="text-on-primary/60 text-[10px] uppercase tracking-[0.3em] font-label">Scroll to Begin</span>
+<div class="w-[1px] h-12 bg-on-primary/20 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-on-primary/60"></div>
+</div>
+</div>
+</section>
+<!-- Narrative Transformation Section -->
+<section class="bg-surface-container-low py-32 px-6">
+<div class="max-w-6xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<!-- The "Central Card" Image Transformation -->
+<div class="md:col-span-7 relative">
+<div class="aspect-[4/5] md:aspect-square overflow-hidden rounded-xl shadow-2xl">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" data-alt="high-end minimalist wedding table setting with crisp white linens, fine crystal, and organic floral arrangements in a bright airy studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyqPuESoqVhKZ0gtptQiSkBiS5iZbW1VKOTzO_qSISdI8WALRcJvC0jN3oTZ5xcQ4zFc3NVxCG0HxwkfPJxgIP5MsHTBw5k991SapMI-mrcUGVM5UEePkopa1UebTfd_InqJhpVBHF-bGNPgmK39VOFbY0yaEzg14v8aV5RH8ndUwGmneyjndBate42EsfuA4yEnDAUPEle9xqSVM_2oSpx63bmQ9FIvQbyjIlwwJwPymNLeofYOjGbwbVyyo_wRACmZvHkiJC4cw"/>
+</div>
+<!-- Asymmetric overlapping card -->
+<div class="absolute -bottom-8 -right-4 md:-right-12 bg-surface-container-lowest p-8 md:p-12 shadow-xl max-w-xs rounded-xl">
+<span class="text-primary font-headline text-4xl font-bold block mb-2">01.</span>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-4">The Vision</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                                We don't just record; we curate. Every frame is treated as a piece of art, meant to stand the test of time.
+                            </p>
+</div>
+</div>
+<div class="md:col-span-5 md:pl-12 flex flex-col justify-center">
+<span class="text-tertiary font-label text-xs uppercase tracking-[0.4em] mb-6">Our Narrative</span>
+<h2 class="font-headline text-4xl md:text-5xl font-extrabold text-on-surface leading-tight mb-8">
+                            A Quiet <br/> Elegance.
+                        </h2>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-10 font-body font-light">
+                            AI NUDO is a cinematic studio dedicated to those who appreciate the beauty in the unspoken. Our approach is grounded in high-contrast minimalism and emotional authenticity.
+                        </p>
+<div>
+<button class="text-on-surface font-label text-sm uppercase tracking-widest flex items-center gap-3 group">
+                                Start the Journey
+                                <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Inspired Services Grid -->
+<section class="bg-surface py-24 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-20">
+<h2 class="font-headline text-3xl font-bold text-on-surface mb-4">The Collection</h2>
+<div class="h-[1px] w-12 bg-primary mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Large Feature -->
+<div class="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-xl bg-surface-container-high aspect-square md:aspect-auto">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" data-alt="luxury wedding cake detail with intricate textures and soft focus background of a high-end reception venue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0EWTDuSxT9Aztssb33AxH59VCxJbP4A1hi1jAfNwa12dJRKVEEtFIt6zyZ43TmQjdy-3_cROY-8F0rDCeFsb8W63tzhEUBkAu2RUj1E2hs9Ej2e9JPfXv1N31rQbMgeSsKk4aaDrmD6UR7KRgwtWodC8HC4l3XMbtwPFn6hRtQGAVnMc8OO442EXYrzlMqyxdhWSmRx3JCTfq93a87X-3mTHjYGwql076mmLwtPlc67trvwlmFc2neg_9sETDMx9wAAuToKqBmW4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 to-transparent flex flex-col justify-end p-10">
+<h4 class="text-on-primary font-headline text-2xl font-bold mb-2">Cinematic Films</h4>
+<p class="text-on-primary/70 text-sm max-w-sm">Motion pictures that capture the emotional arc of your event with editorial precision.</p>
+</div>
+</div>
+<!-- Small Feature 1 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-low aspect-square">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" data-alt="elegant wedding invitation suite with gold foil calligraphy on heavy cream paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ1liB5_bUPT8GqxGias6zovpzL3mcFicx-7Z8crTl0wV4iCfDP3491nLJfIg1XOv7jEY07Oc0J_xOnqDN_PjxD_Sl4mutCSOfSloo68pWehFaZOGE_gukCsdVla0MCm0f0mUSfJIQY3TSHCchLQ8xCevdqJGLNufQkIpF88j2eZkFOZ149dDCRPGwAXW4-y_TR1veML5_85WgyCoQxPhaaOS69SjmO7g0BlrB5YRMeYajJ5O85RfcEqgNi_ZGR7vE9-hlffzkHEA"/>
+<div class="absolute inset-0 flex items-center justify-center p-6 text-center">
+<div class="bg-surface-container-lowest/90 backdrop-blur-sm p-6 w-full rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2">featured_seasonal_and_gifts</span>
+<h4 class="text-on-surface font-headline text-sm font-bold uppercase tracking-widest">Gifting</h4>
+</div>
+</div>
+</div>
+<!-- Small Feature 2 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-high aspect-square">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" data-alt="fashionable couple in high-end formal wear walking through an urban architectural landscape at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyVXZLbo7wXOTZM7Z4CgYRc0A4uitjM_5NzvMIRC5nqTAj_b7ivLfx3NNFr8MIprP5G3Sey9lOqea7-OR99P4p7YcIKB_-F445-ArTaCytcY3SQUtJPcmVUR8ihuqgiqmnJb5B_p2rzagOQxxOZkAemjvpppyb-5hUBUX5BurqB_wgrFSNP3iRoNKC6x42nTGz9ncBLOTAFVH-E9ue-3e9c6NR2wHRVEVbzYQBuPT01Y6Tiqoany4EfVVWEaWmzWd3nef_AOVh-c4"/>
+<div class="absolute inset-0 flex items-center justify-center p-6 text-center">
+<div class="bg-surface-container-lowest/90 backdrop-blur-sm p-6 w-full rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2">auto_stories</span>
+<h4 class="text-on-surface font-headline text-sm font-bold uppercase tracking-widest">Portfolio</h4>
+</div>
+</div>
+</div>
+<!-- Wide Feature -->
+<div class="md:col-span-2 bg-surface-container-highest p-10 rounded-xl flex flex-col justify-center border border-outline-variant/10">
+<h4 class="text-on-surface font-headline text-2xl font-bold mb-4">Curated Experiences</h4>
+<p class="text-on-surface-variant text-base mb-6 leading-relaxed">From private elopements in remote landscapes to grand celebrations in metropolitan hearts.</p>
+<a class="text-primary font-bold text-sm underline underline-offset-8 decoration-primary-dim/30 hover:decoration-primary transition-all" href="#">View All Services</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Narrative / CTA -->
+<section class="py-32 px-6 text-center">
+<div class="max-w-2xl mx-auto">
+<span class="material-symbols-outlined text-primary-dim/40 text-4xl mb-8" style="font-variation-settings: 'FILL' 1;">flare</span>
+<h2 class="font-headline text-4xl font-extrabold text-on-surface mb-8">Ready to curate your legacy?</h2>
+<p class="text-on-surface-variant text-lg font-light mb-12">
+                    Spaces are limited to ensure every project receives our signature undivided attention. Now accepting bookings for the upcoming season.
+                </p>
+<button class="satin-gradient text-on-primary px-12 py-5 rounded-full font-label text-sm uppercase tracking-widest shadow-xl hover:translate-y-[-2px] transition-all active:scale-95 duration-300">
+                    Secure Your Date
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center pt-3 pb-6 px-4 bg-surface/90 backdrop-blur-lg z-50">
+<div class="flex flex-col items-center justify-center text-primary font-bold scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-400">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Services</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-400">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Portfolio</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-400">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] uppercase tracking-widest font-inter mt-1">Booking</span>
+</div>
+</nav>
+<!-- Desktop Footer Navigation (Subtle) -->
+<footer class="hidden md:flex border-t-0 bg-surface-container-low py-16 px-12 items-start justify-between">
+<div>
+<div class="text-2xl font-bold tracking-[0.2em] text-on-surface uppercase font-headline mb-4">AI NUDO</div>
+<p class="text-on-surface-variant text-xs tracking-widest font-label uppercase">© 2024 AI Nudo Studio. All Rights Reserved.</p>
+</div>
+<div class="flex gap-20">
+<div class="flex flex-col gap-4">
+<span class="text-[10px] uppercase tracking-[0.3em] font-bold text-on-surface-variant mb-2">Explore</span>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Journal</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-[10px] uppercase tracking-[0.3em] font-bold text-on-surface-variant mb-2">Studio</span>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Our Story</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Process</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+</footer>
+<!-- FAB (Contextual for Booking) -->
+<div class="fixed bottom-24 right-6 md:bottom-10 md:right-10 z-40">
+<button class="bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+</button>
+</div>
+</body></html>

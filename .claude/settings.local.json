@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:www.revolut.com)",
+      "WebSearch",
+      "Bash(pip3 install:*)",
+      "Bash(python3 -c \":*)",
+      "Bash(python -m markitdown \"/Users/daniel/Desktop/Presentación2.pptx\")",
+      "Bash(python3 -m markitdown \"/Users/daniel/Desktop/Presentación2.pptx\")",
+      "Bash(pip3 list:*)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/daniel/Library/Python/**)",
+      "Bash(pip3 show:*)",
+      "Bash(python3 -c \"from markitdown import MarkItDown; md = MarkItDown\\(\\); result = md.convert\\(''/Users/daniel/Desktop/Presentación2.pptx''\\); print\\(result.text_content\\)\")",
+      "Bash(python -m markitdown '/Users/daniel/Downloads/Agente_IA_Reviews_GuiaRepsol_v1a \\(1\\).pptx')",
+      "Read(//private/tmp/**)",
+      "Bash(python \"/Users/daniel/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/ca0c3f02-c2e6-48d3-a564-7ec073bf419a/c2e97912-aedd-417e-a0ae-caf1cdbbeff8/skills/pptx/scripts/office/soffice.py\" --headless --convert-to pdf \"/Users/daniel/Downloads/Agente_IA_Reviews_GuiaRepsol_v1a \\(1\\).pptx\")",
+      "Bash(rm -f /tmp/slide*.jpg)",
+      "Bash(pdftoppm -jpeg -r 150 \"/tmp/Agente_IA_Reviews_GuiaRepsol_v1a \\(1\\).pdf\" /tmp/slide)",
+      "Bash(python3 \"/Users/daniel/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/ca0c3f02-c2e6-48d3-a564-7ec073bf419a/c2e97912-aedd-417e-a0ae-caf1cdbbeff8/skills/pptx/scripts/office/soffice.py\" --headless --convert-to pdf \"/Users/daniel/Downloads/Agente_IA_Reviews_GuiaRepsol_v1a \\(1\\).pptx\")",
+      "Bash(npx serve:*)",
+      "Bash(ruby --version)",
+      "Bash(php --version)",
+      "Bash(python3 -m http.server 3456)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:3456/Solid%202.0.html\")",
+      "Bash(open \"http://localhost:3456/Solid%202.0.html\")",
+      "Bash(gh auth *)"
+    ]
+  }
+}

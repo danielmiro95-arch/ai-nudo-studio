@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Revolut Effect</title>
+  <style>
+
+    /* ─────────────────────────────────────────────
+       BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f5f5f3;
+      overflow-x: hidden;
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO SECTION
+
+       Debe ser MÁS alta que el viewport para tener
+       espacio de scroll. 250vh = 150vh de animación.
+    ───────────────────────────────────────────── */
+    .hero {
+      height: 250vh;      /* espacio total de scroll */
+      position: relative;
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO STICKY
+
+       Se queda fijo mientras el scroll "consume"
+       la altura extra de .hero.
+
+       ⚠️  IMPORTANTE: debe ser hijo DIRECTO de un
+       elemento que sea 100vw (body, section, etc.)
+       No puede tener clase .container ni padding
+       lateral o la imagen no será full-bleed.
+    ───────────────────────────────────────────── */
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      width: 100%;        /* hereda 100vw del padre */
+      height: 100vh;
+      overflow: hidden;
+      background: #f5f5f3; /* fondo blanco que aparece al recortar */
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO IMAGE
+
+       Ocupa toda la pantalla con position absolute.
+       El clip-path se anima con JS para "recortar"
+       desde los bordes hacia el centro.
+    ───────────────────────────────────────────── */
+    .hero-image {
+      position: absolute;
+      inset: 0;           /* top:0 right:0 bottom:0 left:0 */
+      z-index: 2;
+      will-change: clip-path, filter;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;  /* rellena sin deformar, centra la imagen */
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────────
+       CARD LABEL
+
+       Texto que aparece en la parte inferior de la
+       card cuando el recorte ya está casi completo.
+       Se posiciona y muestra con JS.
+    ───────────────────────────────────────────── */
+    .hero-card-label {
+      position: absolute;
+      z-index: 3;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 16px 20px 22px;
+      opacity: 0;         /* JS lo hace aparecer */
+      pointer-events: none;
+      /* top, left, width, border-radius → JS */
+    }
+
+    .hero-card-label h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 5px;
+    }
+
+    .hero-card-label p {
+      font-size: 0.84rem;
+      color: #666;
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO CAPTION
+
+       Titular superpuesto sobre la imagen al inicio.
+       Se desvanece y asciende al hacer scroll.
+    ───────────────────────────────────────────── */
+    .hero-caption {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 60px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .hero-caption-box {
+      text-align: center;
+      padding: 28px 40px 32px;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(16px);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      max-width: 580px;
+      pointer-events: auto;
+    }
+
+    .hero-caption-box h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 10px;
+    }
+
+    .hero-caption-box p {
+      color: #555;
+      font-size: 1rem;
+    }
+
+    /* ─────────────────────────────────────────────
+       CONTENIDO DEBAJO DEL HERO
+    ───────────────────────────────────────────── */
+    .page-content {
+      padding: 100px 40px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .page-content h2 {
+      font-size: 2.4rem;
+      letter-spacing: -0.05em;
+      margin-bottom: 16px;
+    }
+
+    .page-content p { color: #666; font-size: 1.05rem; line-height: 1.65; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-sticky" id="heroSticky">
+
+      <!-- Imagen full-bleed: JS anima su clip-path -->
+      <div class="hero-image" id="heroImage">
+        <img src="img/bod8.jpg" alt="Hero AI Nudo Studio">
+      </div>
+
+      <!-- Texto de la card (aparece cuando la imagen ya es pequeña) -->
+      <div class="hero-card-label" id="heroLabel">
+        <h2>Bodas editoriales</h2>
+        <p>Flores suaves, luz natural y una puesta en escena impecable.</p>
+      </div>
+
+      <!-- Titular superpuesto sobre la imagen -->
+      <div class="hero-caption" id="heroCaption">
+        <div class="hero-caption-box">
+          <h1>Una estética limpia para celebraciones memorables</h1>
+          <p>Dirección visual minimalista pensada para emocionar desde la primera imagen.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contenido debajo -->
+  <div class="page-content">
+    <h2>El scroll ya terminó</h2>
+    <p>Aquí empieza el resto de la página. La card permanece visible en el
+    último fotograma del hero antes de desaparecer en el scroll normal.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════ -->
+  <script>
+
+    /* ── Utilidades de interpolación ── */
+
+    // Interpolación lineal entre a y b según t (0→1)
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    // Suaviza el progreso: empieza rápido, termina lento
+    function easeOut(t) {
+      return 1 - Math.pow(1 - t, 2.5);
+    }
+
+
+    /* ── Configuración de la card final ── */
+
+    const CARD_W  = 360;  // ancho de la card en px
+    const CARD_H  = 480;  // alto total de la card (imagen + label)
+    const LABEL_H = 80;   // altura del bloque de texto debajo de la imagen
+    const IMG_H   = CARD_H - LABEL_H; // altura de la imagen dentro de la card
+    const RADIUS  = 28;   // border-radius final de la card
+
+
+    /* ── Referencias al DOM ── */
+
+    const hero      = document.getElementById('hero');
+    const sticky    = document.getElementById('heroSticky');
+    const heroImage = document.getElementById('heroImage');
+    const heroLabel = document.getElementById('heroLabel');
+    const caption   = document.getElementById('heroCaption');
+
+
+    /* ── Función principal de animación ── */
+
+    function update() {
+      const W = sticky.offsetWidth;   // ancho real (= 100vw)
+      const H = sticky.offsetHeight;  // alto real (= 100vh)
+
+      // Progreso del scroll: 0 al entrar, 1 al salir
+      const scrolled  = -hero.getBoundingClientRect().top;
+      const maxScroll = hero.offsetHeight - H;
+      const raw = Math.max(0, Math.min(1, scrolled / maxScroll));
+      const p   = easeOut(raw);  // 0 → 1 con ease-out
+
+
+      /* ── 1. CLIP-PATH: recorte desde los 4 bordes ──
+         inset(top right bottom left round radius)
+         Cuando p=0: inset(0 0 0 0) → imagen full-screen
+         Cuando p=1: la imagen queda recortada al tamaño de la card  */
+
+      const topInset  = lerp(0, (H - CARD_H) / 2, p);
+      const sideInset = lerp(0, (W - CARD_W) / 2, p);
+      const radius    = lerp(0, RADIUS, p);
+
+      heroImage.style.clipPath =
+        `inset(${topInset}px ${sideInset}px ${topInset}px ${sideInset}px round ${radius}px)`;
+
+
+      /* ── 2. SOMBRA ──
+         box-shadow no funciona con clip-path (queda recortada).
+         filter: drop-shadow() sí respeta la forma del clip-path.   */
+
+      heroImage.style.filter = p > 0.05
+        ? `drop-shadow(0 ${lerp(0, 40, p)}px ${lerp(0, 80, p)}px rgba(0,0,0,${lerp(0, 0.18, p)}))`
+        : 'none';
+
+
+      /* ── 3. CARD LABEL ──
+         Se posiciona justo debajo de la zona de imagen recortada
+         y aparece en el último tramo de la animación.              */
+
+      const cardLeft = (W - CARD_W) / 2;
+      const labelTop = (H - CARD_H) / 2 + IMG_H;
+
+      heroLabel.style.left          = `${cardLeft}px`;
+      heroLabel.style.top           = `${labelTop}px`;
+      heroLabel.style.width         = `${CARD_W}px`;
+      heroLabel.style.borderRadius  = `0 0 ${RADIUS}px ${RADIUS}px`;
+      heroLabel.style.opacity       = Math.max(0, (p - 0.72) / 0.28);
+      heroLabel.style.pointerEvents = p > 0.85 ? 'auto' : 'none';
+
+
+      /* ── 4. TITULAR ──
+         Sube y se desvanece en el primer tramo del scroll.          */
+
+      const captionOpacity = Math.max(0, 1 - p * 2.2);
+      caption.style.opacity       = captionOpacity;
+      caption.style.transform     = `translateY(${p * -50}px)`;
+      caption.style.pointerEvents = captionOpacity < 0.05 ? 'none' : 'auto';
+    }
+
+
+    /* ── Escuchadores ── */
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+
+    // Ejecutar al cargar por si la página no empieza en el top
+    update();
+
+  </script>
+</body>
+</html>

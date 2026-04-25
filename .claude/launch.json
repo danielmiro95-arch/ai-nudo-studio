@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "AI Nudo Studio",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "serve", "/Users/daniel/Desktop/AI Nudo Studio", "-p", "3000", "--no-clipboard"],
+      "port": 3000
+    }
+  ]
+}

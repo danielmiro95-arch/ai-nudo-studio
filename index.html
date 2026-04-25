@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Nudo Studio — Decoración y dirección visual para bodas, eventos y regalos. Estética editorial, limpia y premium." />
+  <title>AI Nudo Studio | Inicio</title>
+  <link rel="icon" href="img/logo-ai-nudo-studio.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><img src="img/logo-ai-nudo-studio.png" alt="Logo AI Nudo Studio"></span>
+        <span>AI Nudo Studio<small>Bodas, eventos y regalos</small></span>
+      </a>
+      <nav class="nav-links">
+        <a class="active" href="index.html">Inicio</a>
+        <a href="bodas.html">Bodas</a>
+        <a href="regalos.html">Regalos</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="regalos.html">Ver catálogo</a>
+        <a class="btn btn-primary" href="contacto.html">Pedir propuesta</a>
+      </div>
+      <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-revolut" id="heroRevolut">
+      <div class="hero-revolut-sticky" id="heroSticky">
+
+        <!-- ① BACKGROUND IMAGE: full-screen, se desplaza hacia arriba con el scroll.
+             Al subir, el fondo blanco queda expuesto alrededor de la card. -->
+        <div class="hero-image-bg" id="heroBg">
+          <img src="img/bod8.jpg" alt="" aria-hidden="true">
+        </div>
+
+        <div id="heroCardRing"></div>
+
+        <!-- ② CARD -->
+        <div class="hero-image-mask" id="heroMask">
+          <img src="img/bod8.jpg" alt="Portada AI Nudo Studio">
+        </div>
+
+        <!-- Label debajo de la card, posicionado por JS -->
+        <div class="hero-card-copy" id="heroCardCopy">
+          <h3>Bodas editoriales</h3>
+          <p>Flores suaves, luz natural y una puesta en escena impecable.</p>
+        </div>
+
+        <!-- Cartas laterales -->
+        <article class="service-card-scroll left-card" id="leftCard">
+          <a href="bodas.html">
+            <img src="img/boda1.jpg" alt="Bodas">
+            <div class="scroll-card-copy">
+              <h3>Bodas</h3>
+              <p>Ceremonias junto al mar, flores suaves y una atmósfera luminosa.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="service-card-scroll right-card" id="rightCard">
+          <a href="eventos.html">
+            <img src="img/ai-nudo-eventos.png" alt="Eventos">
+            <div class="scroll-card-copy">
+              <h3>Eventos</h3>
+              <p>Mesas, luz cálida y composiciones pensadas para emocionar.</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Titular superpuesto sobre la imagen al inicio -->
+        <!-- Título final visible sobre el espacio libre arriba de las cards -->
+        <div class="hero-end-title" id="heroEndTitle">
+          <span class="hero-end-eyebrow">Dirección visual · Bodas · Eventos · Regalos</span>
+          <h2 class="hero-end-heading">AI NUDO<br>STUDIO</h2>
+          <a class="hero-end-btn" href="#" download>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v9M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Descargar app
+          </a>
+        </div>
+
+        <div class="front-copy reveal" id="frontCopy">
+          <div class="front-copy-box">
+            <span class="eyebrow-front">AI Nudo Studio</span>
+            <h1>Una estética limpia para celebraciones memorables</h1>
+            <p>Dirección visual minimalista, blanca y negra, pensada para vender mejor desde la primera impresión.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section reveal home-services">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-copy">
+            <div class="eyebrow">Servicios principales</div>
+            <h2>Bodas, eventos y regalos con una dirección visual impecable</h2>
+            <p>Creamos experiencias visuales para celebraciones que merecen ser recordadas. Desde la ceremonia hasta el último detalle, todo pensado para emocionar.</p>
+          </div>
+        </div>
+
+        <div class="grid-3 reveal-stagger">
+          <article class="service-card">
+            <video class="service-video" autoplay muted loop playsinline preload="auto" poster="img/ai-nudo-portada.png">
+              <source src="video/video1.mp4" type="video/mp4">
+              Tu navegador no pudo cargar este vídeo.
+            </video>
+            <h3>Bodas editoriales</h3>
+            <p>Ceremonias, pasillos, arcos florales y una puesta en escena impecable para web y fotografía.</p>
+            <a class="btn btn-primary" href="bodas.html">Entrar</a>
+          </article>
+
+          <article class="service-card">
+            <video class="service-video" autoplay muted loop playsinline preload="auto" poster="img/ai-nudo-eventos.png">
+              <source src="video/deco1.mp4" type="video/mp4">
+              Tu navegador no pudo cargar este vídeo.
+            </video>
+            <h3>Eventos con carácter</h3>
+            <p>Diseños sobrios, luz suave y composiciones preparadas para emocionar sin recargar.</p>
+            <a class="btn btn-primary" href="eventos.html">Entrar</a>
+          </article>
+
+          <article class="service-card">
+            <video class="service-video" autoplay muted loop playsinline preload="auto" poster="img/ai-nudo-regalos.png">
+              <source src="video/deco2.mp4" type="video/mp4">
+              Tu navegador no pudo cargar este vídeo.
+            </video>
+            <h3>Regalos con intención</h3>
+            <p>Papelería, empaque y detalles con una narrativa visual más delicada desde el primer vistazo.</p>
+            <a class="btn btn-primary" href="regalos.html">Entrar</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container mini-grid reveal-stagger">
+        <article class="metric-card">
+          <strong>01</strong>
+          <h3>Estética editorial</h3>
+          <p>Un estilo blanco y negro que da protagonismo a cada celebración sin recargar la imagen.</p>
+        </article>
+        <article class="metric-card">
+          <strong>02</strong>
+          <h3>Detalle y cuidado</h3>
+          <p>Cada elemento está pensado para que la experiencia sea coherente, elegante y memorable.</p>
+        </article>
+        <article class="metric-card">
+          <strong>03</strong>
+          <h3>Marca con personalidad</h3>
+          <p>Una identidad reconocible que comunica gusto, confianza y posicionamiento premium.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container split">
+        <div class="split-copy">
+          <div class="eyebrow">La marca</div>
+          <h2>Blanco, negro y luz natural para una identidad más sólida</h2>
+          <p>Una paleta limpia que da protagonismo a las flores, las mesas y los detalles, transmitiendo calidad y elegancia desde la primera impresión.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="contacto.html">Solicitar propuesta</a>
+            <a class="btn btn-ghost" href="eventos.html">Ver eventos</a>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <img src="img/ai-nudo-eventos.png" alt="Mesa decorada AI Nudo Studio">
+          <div class="overlay">
+            <strong>Eventos y mesas con identidad</strong>
+            <p>Una presentación sobria para elevar el posicionamiento visual de cada celebración.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container grid-2 reveal-stagger">
+        <article class="feature-panel">
+          <div class="eyebrow">Dirección floral</div>
+          <h3 style="margin:14px 0 10px; font-size:1.8rem;">Arcos, pasillos y detalles que crean atmósfera</h3>
+          <p>Diseñamos cada elemento floral para que el espacio cuente una historia visual coherente, elegante y emocionante desde la primera foto.</p>
+        </article>
+        <article class="feature-panel">
+          <div class="eyebrow">Coordinación visual</div>
+          <h3 style="margin:14px 0 10px; font-size:1.8rem;">Un proceso pensado para que todo encaje</h3>
+          <p>Desde la primera propuesta hasta el montaje final, cuidamos cada detalle para que el resultado sea exactamente lo que imaginabas.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta reveal">
+      <div class="container">
+        <div class="eyebrow">Contacto</div>
+        <h2>Cuéntanos tu idea y la convertimos en una propuesta visual</h2>
+        <p style="max-width:760px; margin:16px auto 0;">Cuéntanos qué tienes en mente y te preparamos una propuesta personalizada para tu celebración.</p>
+        <div class="hero-cta" style="justify-content:center; margin-top:24px;">
+          <a class="btn btn-primary" href="contacto.html">Ir a contacto</a>
+          <a class="btn btn-ghost" href="bodas.html">Ver bodas</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <span>© 2026 AI Nudo Studio.</span>
+      <span>Inicio · Bodas · Regalos · Eventos · Contacto</span>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
