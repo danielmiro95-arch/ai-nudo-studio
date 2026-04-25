@@ -26,7 +26,8 @@
       "Bash(echo \"PID: $!\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:3456/Solid%202.0.html\")",
       "Bash(open \"http://localhost:3456/Solid%202.0.html\")",
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "Bash(gh repo *)"
     ]
   }
 }
