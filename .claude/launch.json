@@ -4,8 +4,28 @@
     {
       "name": "AI Nudo Studio",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["-y", "serve", "/Users/daniel/Desktop/AI Nudo Studio", "-p", "3000", "--no-clipboard"],
+      "runtimeArgs": [
+        "-y",
+        "serve",
+        "/Users/daniel/Desktop/AI Nudo Studio",
+        "-p",
+        "3000",
+        "--no-clipboard"
+      ],
       "port": 3000
+    },
+    {
+      "name": "Nudo worktree",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "serve",
+        "/Users/daniel/Desktop/AI Nudo Studio/.claude/worktrees/nudo-studio-improvements-be8846",
+        "-p",
+        "3001",
+        "--no-clipboard"
+      ],
+      "port": 3001
     }
   ]
 }

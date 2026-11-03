@@ -265,3 +265,20 @@ if (contactForm) {
     }, 3500);
   });
 }
+
+// Formulario de contacto: abre el cliente de correo con el mensaje ya redactado.
+// Para recibirlo sin depender del correo del usuario, sustituir por Formspree/Netlify Forms.
+(function () {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(form);
+    const subject = `Consulta de ${d.get('nombre')}`;
+    const body = `Nombre: ${d.get('nombre')}\nEmail: ${d.get('email')}\n\n${d.get('mensaje')}`;
+    window.location.href = `mailto:info@ainudostudio.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const status = document.getElementById('formStatus');
+    status.hidden = false;
+    status.textContent = 'Se ha abierto tu correo con el mensaje listo. Si no se abre, escríbenos a info@ainudostudio.com.';
+  });
+})();
