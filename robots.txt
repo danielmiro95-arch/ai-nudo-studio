@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://ainudostudio.com/sitemap.xml
+Sitemap: https://nudostudio.blog/sitemap.xml
