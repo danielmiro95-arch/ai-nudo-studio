@@ -799,3 +799,73 @@ h3 { letter-spacing: -0.03em; }
 @media (max-width: 760px) {
   .grid-2 { grid-template-columns: 1fr; }
 }
+
+/* ═══ Bloque 2: tipografía editorial, transiciones y nuevas secciones ═══ */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: vt-out .35s cubic-bezier(.4,0,.2,1) both; }
+::view-transition-new(root) { animation: vt-in .5s cubic-bezier(.22,1,.36,1) both; }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-12px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(16px); } }
+.topbar { view-transition-name: topbar; }
+
+h1, h2, .hero-end-heading {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+
+/* Revelado de imágenes con máscara */
+.page-hero-visual img, .gallery-card img {
+  clip-path: inset(0 0 0 0 round var(--radius-lg));
+  transition: clip-path 1.2s cubic-bezier(.22,1,.36,1), transform 1.4s cubic-bezier(.22,1,.36,1);
+}
+.reveal:not(.in-view) .page-hero-visual img,
+.reveal:not(.in-view) .gallery-card img { clip-path: inset(12% 8% 12% 8% round var(--radius-lg)); transform: scale(1.06); }
+.gallery-card:hover img { transform: scale(1.03); }
+
+/* Proceso */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; }
+.step { padding: 26px; border-radius: var(--radius-lg); background: var(--surface-strong); border: 1px solid var(--line); counter-increment: step; }
+.step::before { content: counter(step, decimal-leading-zero); display: block; font-family: "Cormorant Garamond", serif; font-size: 2.4rem; line-height: 1; margin-bottom: 14px; color: var(--muted); }
+.step h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.step p { margin: 0; color: var(--muted); font-size: .9rem; }
+
+/* FAQ */
+.faq { max-width: 860px; margin: 0 auto; display: grid; gap: 10px; }
+.faq details { background: var(--surface-strong); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 0 22px; }
+.faq summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 600; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 1.3rem; line-height: 1; transition: transform .3s ease; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin: 0 0 20px; color: var(--muted); }
+
+/* Tarifas */
+.pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+.price-card { display: flex; flex-direction: column; gap: 14px; padding: 32px; border-radius: var(--radius-xl); background: var(--surface-strong); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.price-card.featured { background: #111; color: #fff; }
+.price-card.featured p, .price-card.featured li { color: rgba(255,255,255,.72); }
+.price-card.featured .btn-primary { background: #fff; color: #111; }
+.price-card h3 { margin: 0; font-size: 1.3rem; }
+.price-card .price { font-family: "Cormorant Garamond", serif; font-size: 3rem; line-height: 1; }
+.price-card .price small { font-family: Inter, sans-serif; font-size: .85rem; opacity: .7; margin-right: 6px; }
+.price-card p { margin: 0; color: var(--muted); }
+.price-card ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; flex: 1; }
+.price-card li { color: var(--muted); font-size: .92rem; }
+.price-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 28px; flex-wrap: wrap; }
+.price-tabs button { border: 1px solid var(--line); background: var(--surface-strong); padding: 10px 20px; border-radius: 999px; cursor: pointer; }
+.price-tabs button[aria-selected="true"] { background: #111; color: #fff; }
+.price-panel[hidden] { display: none; }
+.price-note { text-align: center; color: var(--muted); font-size: .88rem; margin-top: 20px; }
+
+/* Botón flotante WhatsApp */
+.wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 80; width: 56px; height: 56px; border-radius: 50%; background: #111; color: #fff; display: grid; place-items: center; box-shadow: 0 12px 30px rgba(0,0,0,.25); transition: transform .3s ease; }
+.wa-float:hover { transform: scale(1.08); }
+
+@media (max-width: 1080px) { .steps { grid-template-columns: repeat(2, 1fr); } .pricing { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  @view-transition { navigation: none; }
+}

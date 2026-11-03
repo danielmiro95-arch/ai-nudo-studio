@@ -282,3 +282,44 @@ if (contactForm) {
     status.textContent = 'Se ha abierto tu correo con el mensaje listo. Si no se abre, escríbenos a info@ainudostudio.com.';
   });
 })();
+
+/* ── Vídeos: solo se reproducen cuando están en pantalla ── */
+(function () {
+  const vids = document.querySelectorAll('video[autoplay]');
+  if (!vids.length || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting && !prefersReducedMotion) target.play().catch(() => {});
+      else target.pause();
+    });
+  }, { threshold: 0.25 });
+  vids.forEach(v => { v.removeAttribute('autoplay'); v.preload = 'metadata'; io.observe(v); });
+})();
+
+/* ── Botón flotante de WhatsApp (número en un solo sitio) ── */
+const WHATSAPP_NUMBER = '34600000000'; // TODO: número real
+(function () {
+  if (document.querySelector('.wa-float')) return;
+  const a = document.createElement('a');
+  a.className = 'wa-float';
+  a.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, me gustaría pedir una propuesta')}`;
+  a.target = '_blank'; a.rel = 'noopener';
+  a.setAttribute('aria-label', 'Escríbenos por WhatsApp');
+  a.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg>';
+  document.body.appendChild(a);
+})();
+
+/* ── Pestañas de tarifas ── */
+document.querySelectorAll('.price-tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.price-tabs button').forEach(b => b.setAttribute('aria-selected', b === btn));
+    document.querySelectorAll('.price-panel').forEach(p => { p.hidden = p.id !== btn.getAttribute('aria-controls'); });
+  });
+});
+
+/* ── Contacto: rellenar el mensaje con el paquete elegido (?paquete=...) ── */
+(function () {
+  const pkg = new URLSearchParams(location.search).get('paquete');
+  const ta = document.querySelector('#contactForm textarea');
+  if (pkg && ta && !ta.value) ta.value = `Me interesa el paquete «${pkg}». `;
+})();
