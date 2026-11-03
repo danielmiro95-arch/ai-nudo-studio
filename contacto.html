@@ -24,6 +24,7 @@
         <a href="regalos.html">Regalos</a>
         <a href="eventos.html">Eventos</a>
         <a class="active" href="contacto.html">Contacto</a>
+        <a href="asistente.html">✦ Asistente</a>
       </nav>
       <div class="nav-actions">
         <a class="btn btn-ghost" href="index.html">Volver</a>
@@ -56,7 +57,7 @@
           </div>
         </div>
         <div class="page-hero-visual">
-          <img src="img/ai-nudo-eventos.png" alt="Contacto AI Nudo Studio">
+          <img src="img/ai-nudo-eventos.webp" alt="Contacto AI Nudo Studio">
         </div>
       </div>
     </section>
@@ -66,11 +67,12 @@
         <article class="contact-card">
           <h3>Cuéntanos qué necesitas</h3>
           <p class="contact-note">Rellena el formulario y te responderemos lo antes posible con una propuesta adaptada a tu celebración.</p>
-          <form>
-            <label class="field-label">Nombre<input class="input" type="text" placeholder="Tu nombre"></label>
-            <label class="field-label">Email<input class="input" type="email" placeholder="tu@email.com"></label>
-            <label class="field-label">Mensaje<textarea class="textarea" placeholder="Cuéntanos qué tipo de boda, evento o regalo tienes en mente"></textarea></label>
-            <button class="btn btn-primary" type="button">Enviar consulta</button>
+          <form id="contactForm" action="mailto:info@ainudostudio.com" method="post">
+            <label class="field-label">Nombre<input class="input" type="text" name="nombre" placeholder="Tu nombre" required></label>
+            <label class="field-label">Email<input class="input" type="email" name="email" placeholder="tu@email.com" required></label>
+            <label class="field-label">Mensaje<textarea class="textarea" name="mensaje" required placeholder="Cuéntanos qué tipo de boda, evento o regalo tienes en mente"></textarea></label>
+            <button class="btn btn-primary" type="submit">Enviar consulta</button>
+            <p class="contact-note" id="formStatus" role="status" hidden></p>
           </form>
         </article>
 
